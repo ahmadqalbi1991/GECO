@@ -20,15 +20,15 @@ $(window).on('load', function () {
 /*=============================================
     =          Menu Bottom Line			      =
 =============================================*/
-function menu_bottom_line_active() {
-	var off = $('#mobile-menu > ul > li.show').offset(),
-		left = off.left,
-		right = $(window).width() - left - $('#mobile-menu > ul > li.show').width() + $('#mobile-menu > ul > li.show').width();
+// function menu_bottom_line_active() {
+// 	var off = $('#mobile-menu > ul > li.show').offset(),
+// 		left = off.left,
+// 		right = $(window).width() - left - $('#mobile-menu > ul > li.show').width() + $('#mobile-menu > ul > li.show').width();
+//
+// 	$('<style>.navbar-wrap > ul > li.show > a::after{width:' + right + 'px;}</style>').appendTo("head");
+// }
 
-	$('<style>.navbar-wrap > ul > li.show > a::after{width:' + right + 'px;}</style>').appendTo("head");
-}
-
-menu_bottom_line_active();
+// menu_bottom_line_active();
 
 // Menu bottom line
 function menu_bottom_line() {

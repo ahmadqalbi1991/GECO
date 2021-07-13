@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label for="tournament_start_at" class="form-control-label">Datetime</label>
                                             <input name="tournament_start_at" class="form-control @error('tournament_start_at') is-invalid @enderror" type="datetime-local" value="{{ date('Y-m-d', strtotime($tournament->tournament_start_date)) . 'T' . date('h:m:i', strtotime($tournament->start_time)) }}" id="tournament_start_at">
@@ -57,7 +57,16 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="price" class="form-control-label">Price</label>
+                                            <input name="price" class="form-control @error('price') is-invalid @enderror" type="number" value="{{ $tournament->price }}" id="price">
+                                            @error('price')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label for="tournament_type">Tournament Type</label>
                                             <select name="tournament_type" id="tournament_type" class="form-control @error('tournament_type') is-invalid @enderror">
@@ -70,7 +79,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label for="max_allow">Maximum Allowed</label>
                                             <input type="number" value="{{ $tournament->max_allow }}" name="max_allow" class="form-control @error('max_allow') is-invalid @enderror" id="max_allow" min="10">

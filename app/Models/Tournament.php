@@ -18,7 +18,8 @@ class Tournament extends Model
         'image',
         'tournament_type',
         'max_allow',
-        'start_time'
+        'start_time',
+        'price'
     ];
 
     public function game() {

@@ -63,7 +63,8 @@ class TournamentController extends Controller
             'max_allow' => 'required|numeric|min:10',
             'description' => 'required',
             'rules' => 'required',
-            'image' => 'required'
+            'image' => 'required',
+            'price' => 'required'
         ]);
 
         if ($validation->fails()) {

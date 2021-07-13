@@ -3,10 +3,6 @@
         <div class="container custom-container-two">
             <div class="row align-items-center">
                 <div class="col-lg-6 d-none d-lg-block">
-                    <div class="header-top-offer">
-                        <p>Exclusive Black Friday ! Offer</p>
-                        <span class="coming-time" data-countdown="2021/3/15"></span>
-                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="header-social">
@@ -33,31 +29,20 @@
                             </div>
                             <div id="mobile-menu" class="navbar-wrap d-none d-lg-flex">
                                 <ul>
-                                    <li class="show"><a href="#">Home</a>
-                                        <ul class="submenu">
-                                            <li><a href="index-2.html">Home One</a></li>
-                                            <li><a href="index-3.html">Home Two</a></li>
-                                            <li class="active"><a href="index-4.html">Home Three</a></li>
-                                            <li><a href="index.html">Home Four</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="submenu">
-                                            <li><a href="about-us.html">About Story</a></li>
-                                            <li><a href="upcoming-games.html">Upcoming Games</a></li>
-                                            <li><a href="game-single.html">Game Single</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="game-overview.html">Overview</a></li>
-                                    <li><a href="community.html">Community</a></li>
-                                    <li><a href="shop.html">Store</a></li>
-                                    <li><a href="#">Blog</a>
-                                        <ul class="submenu">
-                                            <li><a href="blog.html">News Page</a></li>
-                                            <li><a href="blog-details.html">News Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">contact</a></li>
+                                    <li class="{{ Request::is('/') ? 'active' : NULL }}"><a href="{{ route('site.home') }}">Home</a></li>
+                                    <li class="{{ Request::is('tournaments') ? 'active' : NULL }}"><a href="{{ route('site.tournaments') }}">Tournaments</a></li>
+                                    @if(!Auth::user())
+                                        <li class="{{ Request::is('login') ? 'active' : NULL }}"><a href="{{ route('site.user.login') }}">Login</a></li>
+                                        <li class="{{ Request::is('register') ? 'active' : NULL }}"><a href="{{ route('site.user.register') }}">Register</a></li>
+                                    @else
+                                        <li><a href="#"><i class="fa fa-cog"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="about-us.html">My profile</a></li>
+                                                <li><a href="upcoming-games.html">My TOurnaments</a></li>
+                                                <li><a href="{{ route('logout') }}">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                             <div class="header-action">

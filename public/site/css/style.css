@@ -1558,13 +1558,15 @@ ul.minicart .cart-price .new {
 	margin-bottom: 15px;
 	text-transform: uppercase;
 }
-.section-title h2 {
-	font-size: 45px;
+.section-title h2, .section-title h4{
+	font-size: 28px;
 	font-weight: 800;
 	margin-bottom: 0;
 	line-height: 1;
 	letter-spacing: -2px;
+    color: #797979;
 }
+
 .latest-games-items {
 	position: relative;
 	box-shadow: 0px 5px 12.09px 0.91px rgba(0, 0, 0, 0.35);
@@ -3113,7 +3115,7 @@ ul.minicart .cart-price .new {
 /* 18. Upcoming-games */
 .upcoming-game-item {
 	background-color: rgb(255, 255, 255);
-	box-shadow: 0px 2px 21px 0px rgba(59, 53, 63, 0.12);
+	box-shadow: 0px 2px 15px 0px rgba(59, 53, 63);
 	padding: 30px 25px 35px;
 }
 .uc-game-head-title > span {
@@ -4476,10 +4478,32 @@ ul.minicart .cart-price .new {
 	border: none;
 	font-size: 14px;
 	border-bottom: 2px solid #eeeeee;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
 	padding: 0 0 20px;
 	transition: .3s linear;
 }
+span.error{
+    color: #dc3545;
+}
+.registration-success {
+    border: 2px solid #e4a101;
+    height: 250px;
+    text-align: center;
+    margin: auto;
+    vertical-align: middle;
+    align-content: center;
+    align-items: center;
+    padding: 15% 0 20%;
+}
+
+.registration-success h2 {
+    color: #e4a101;
+}
+
+.registration-success h4 {
+    color: #6c757d;
+}
+
 .contact-form button {
 	display: block;
 	width: 100%;
@@ -4883,4 +4907,16 @@ ul.minicart .cart-price .new {
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+.page-item.active .page-link {
+    background-color: #e4a101 !important;
+    border-color: #e4a101 !important;
+}
+
+.page-link {
+    color: #e4a101;
+}
+
+.wauto {
+    width: auto !important;
 }
