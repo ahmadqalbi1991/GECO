@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-4">
-                        <div class="card-body px-0 pt-0 pb-2">
+                        <div class="card-body ">
                             <form action="{{ route('admin.tournaments.update', $tournament->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT">

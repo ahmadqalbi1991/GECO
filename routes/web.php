@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth;
 Route::post('login', [Auth\AuthController::class, 'login'])->name('login');
 Route::get('logout', [Auth\AuthController::class, 'logout'])->name('logout');
 Route::post('register', [Auth\AuthController::class, 'register'])->name('register');
+Route::post('/get-pubg-player', [Site\TournamentController::class, 'getPlayerDetail']);
 
 /*
  * Admin Routes
@@ -32,6 +33,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/logout', [Admin\AdminController::class, 'logout'])->name('logout');
         Route::resource('/games', 'Admin\GameController');
         Route::resource('/tournaments', 'Admin\TournamentController');
+        Route::resource('/products', 'Admin\ProductController');
     });
 });
 
@@ -53,6 +55,15 @@ Route::name('site.')->group(function () {
         Route::get('/tournament/{id}', [Site\TournamentController::class, 'tournamentDetail'])->name('detail');
         Route::get('/tournament/register/{id}', [Site\TournamentController::class, 'tournamentRegister'])->name('register');
     });
+    Route::get('add-cart/{id}', [Site\HomeController::class, 'addCart'])->name('add-cart');
+    Route::get('remove-cart-item/{id}', [Site\HomeController::class, 'removeCartItem'])->name('remove-cart-item');
+    Route::get('/cart', [Site\HomeController::class, 'cart'])->name('cart');
+    Route::post('/update-cart', [Site\HomeController::class, 'updateCart'])->name('update-cart');
+    Route::get('/checkout', [Site\HomeController::class, 'checkout'])->name('checkout');
+    Route::post('/create-order', [Site\HomeController::class, 'updateShipment'])->name('update-shipment');
+    Route::get('/payment-success/{order_number}', [Site\HomeController::class, 'successCart'])->name('cart-success');
+    Route::get('/blog/{id}', [Site\HomeController::class, 'blog'])->name('blog');
 });
+Route::post('/get-pubg-player', [Site\TournamentController::class, 'getPlayerDetail']);
 
 

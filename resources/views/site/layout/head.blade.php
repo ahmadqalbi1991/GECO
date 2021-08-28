@@ -4,8 +4,10 @@
     <title>Geco - {{ $title }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="url" content="{{ URL('/') }}">
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('site/img/favicon.png') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->

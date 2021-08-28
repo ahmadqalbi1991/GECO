@@ -4920,3 +4920,37 @@ span.error{
 .wauto {
     width: auto !important;
 }
+
+.cart img {
+    width: 100px;
+}
+
+.cart h5 {
+    color: #e9a401;
+    margin: 0;
+}
+
+.cart button {
+    background: #e9a401;
+    color: #fff;
+    border-color: #e9a401;
+    border: none;
+}
+
+.cart .delete {
+    color: darkred;
+}
+
+.cart p {
+    margin: 0;
+}
+
+.cart-total h3, .cart-total h4, .cart-total h5 {
+    color: #666666;
+}
+
+.item-total {
+    color: #666666;
+    font-size: 18px;
+    font-weight: 600;
+}

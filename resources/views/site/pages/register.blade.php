@@ -105,7 +105,19 @@
                 </div>
             </div>
         </section>
-
+        @elseif (Session::has('message') && Session::has('status') && Session::get('status') == 'error')
+            <section class="regiration-sucess pt-120 pb-80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="registration-success">
+                                <h2>Oops!</h2>
+                                <h4>Your order has not been saved. You can reorder your cart from my orders.</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         @else
         <section class="regiration-sucess pt-120 pb-80">
             <div class="container">

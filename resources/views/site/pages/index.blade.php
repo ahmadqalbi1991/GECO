@@ -12,13 +12,18 @@
                             <div class="col-xl-6 col-lg-7 col-md-11">
                                 <div class="slider-content">
                                     <h6 data-animation="fadeInUp" data-delay=".4s">world gaming</h6>
-                                    <h2 data-animation="fadeInUp" data-delay=".4s">Create <span>Manage</span> Matches</h2>
-                                    <p data-animation="fadeInUp" data-delay=".6s">Find technology or people for digital projects in public sector and Find an individual specialist develope researcher.</p>
-                                    <a href="#" class="btn btn-style-two" data-animation="fadeInUp" data-delay=".8s">READ MORE</a>
+                                    <h2 data-animation="fadeInUp" data-delay=".4s">Create <span>Manage</span> Matches
+                                    </h2>
+                                    <p data-animation="fadeInUp" data-delay=".6s">Find technology or people for digital
+                                        projects in public sector and Find an individual specialist develope
+                                        researcher.</p>
+                                    <a href="#" class="btn btn-style-two" data-animation="fadeInUp" data-delay=".8s">READ
+                                        MORE</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="slider-img"><img src="{{ asset('site/img/slider/four_slider_img01.png') }}" alt="" data-animation="slideInRightS" data-delay=".8s"></div>
+                        <div class="slider-img"><img src="{{ asset('site/img/slider/four_slider_img01.png') }}" alt=""
+                                                     data-animation="slideInRightS" data-delay=".8s"></div>
                     </div>
                 </div>
                 <div class="single-slider slider-bg slider-style-two">
@@ -27,13 +32,18 @@
                             <div class="col-xl-6 col-lg-7 col-md-11">
                                 <div class="slider-content">
                                     <h6 data-animation="fadeInUp" data-delay=".4s">world gaming</h6>
-                                    <h2 data-animation="fadeInUp" data-delay=".4s">Create <span>Manage</span> Matches</h2>
-                                    <p data-animation="fadeInUp" data-delay=".6s">Find technology or people for digital projects in public sector and Find an individual specialist develope researcher.</p>
-                                    <a href="#" class="btn btn-style-two" data-animation="fadeInUp" data-delay=".8s">READ MORE</a>
+                                    <h2 data-animation="fadeInUp" data-delay=".4s">Create <span>Manage</span> Matches
+                                    </h2>
+                                    <p data-animation="fadeInUp" data-delay=".6s">Find technology or people for digital
+                                        projects in public sector and Find an individual specialist develope
+                                        researcher.</p>
+                                    <a href="#" class="btn btn-style-two" data-animation="fadeInUp" data-delay=".8s">READ
+                                        MORE</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="slider-img"><img src="{{ asset('site/img/slider/four_slider_img02.png') }}" alt="" data-animation="slideInRightS" data-delay=".8s"></div>
+                        <div class="slider-img"><img src="{{ asset('site/img/slider/four_slider_img02.png') }}" alt=""
+                                                     data-animation="slideInRightS" data-delay=".8s"></div>
                     </div>
                 </div>
             </div>
@@ -93,62 +103,32 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-8">
                             <div class="section-title home-four-title mb-50">
-                                <span>LATEST RELEASES</span>
-                                <h2>Create & <span>Manage</span></h2>
+                                <span>Our Games</span>
+                                <h2>Buy & <span>Enjoy</span></h2>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="latest-games-active owl-carousel">
-                                <div class="latest-games-items mb-30">
-                                    <div class="latest-games-thumb">
-                                        <a href="#"><img src="{{ asset('site/img/product/latest_games_thumb01.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="latest-games-content">
-                                        <div class="lg-tag">
-                                            <a href="#">racing</a>
+                                @foreach($tournaments as $tournament)
+                                    <div class="latest-games-items mb-30">
+                                        <div class="latest-games-thumb">
+                                            <a href="#"><img
+                                                    src="{{ asset('games/tournaments/' . $tournament->image) }}" alt=""></a>
                                         </div>
-                                        <h4><a href="#">Vertical Games <span>Daily</span></a></h4>
-                                        <p>entry fee : <span>free</span></p>
-                                    </div>
-                                </div>
-                                <div class="latest-games-items mb-30">
-                                    <div class="latest-games-thumb">
-                                        <a href="#"><img src="{{ asset('site/img/product/latest_games_thumb02.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="latest-games-content">
-                                        <div class="lg-tag">
-                                            <a href="#">zombie</a>
+                                        <div class="latest-games-content">
+                                            <div class="lg-tag">
+                                                <a href="#">{{ $tournament->game->game_type }}</a>
+                                            </div>
+                                            <h4><a href="#">{{ $tournament->game->game_name }}
+                                                    <span>{{ $tournament->game->game_name }}</span></a></h4>
+                                            <p>entry fee :
+                                                <span>Rs. {{ $tournament->price ? $tournament->price : 'free' }}</span>
+                                            </p>
                                         </div>
-                                        <h4><a href="#">Hunter Killer <span>ii</span></a></h4>
-                                        <p>entry fee : <span>$25,00</span></p>
                                     </div>
-                                </div>
-                                <div class="latest-games-items mb-30">
-                                    <div class="latest-games-thumb">
-                                        <a href="#"><img src="{{ asset('site/img/product/latest_games_thumb03.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="latest-games-content">
-                                        <div class="lg-tag">
-                                            <a href="#">creative</a>
-                                        </div>
-                                        <h4><a href="#">Sky Walker <span>Daily</span></a></h4>
-                                        <p>entry fee : <span>$25,00</span></p>
-                                    </div>
-                                </div>
-                                <div class="latest-games-items mb-30">
-                                    <div class="latest-games-thumb">
-                                        <a href="#"><img src="{{ asset('site/img/product/latest_games_thumb01.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="latest-games-content">
-                                        <div class="lg-tag">
-                                            <a href="#">racing</a>
-                                        </div>
-                                        <h4><a href="#">Vertical games <span>daily</span></a></h4>
-                                        <p>entry fee : <span>free</span></p>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -170,7 +150,8 @@
                         <div class="col-xl-8 col-lg-9">
                             <div class="live-match-wrap">
                                 <img src="{{ asset('site/img/images/live_match_img.jpg') }}" alt="">
-                                <a href="https://www.youtube.com/watch?v=04KPiGmC7Lc" class="popup-video"><img src="{{ asset('site/img/icon/video_play_icon.png') }}" alt=""></a>
+                                <a href="https://www.youtube.com/watch?v=04KPiGmC7Lc" class="popup-video"><img
+                                        src="{{ asset('site/img/icon/video_play_icon.png') }}" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -213,123 +194,34 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-md-8">
                         <div class="section-title home-four-title black-title text-center mb-60">
-                            <h2>ALL RELEASED <span>GAMES</span></h2>
+                            <h2>ALL <span>GAMES</span></h2>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="container-fluid container-full">
                 <div class="row no-gutters new-released-game-active">
-                    <div class="col-lg-3">
-                        <div class="featured-game-item mb-30">
-                            <div class="featured-game-thumb">
-                                <img src="{{ asset('site/img/images/s_featured_game_thumb01.jpg') }}" alt="">
-                            </div>
-                            <div class="featured-game-content">
-                                <h4><a href="#">JUST FOR <span>GAMERS</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
+                    @foreach($games as $game)
+                        <div class="col-lg-3">
+                            <div class="featured-game-item mb-30">
+                                <div class="featured-game-thumb">
+                                    <img src="{{ asset('games/' . $game->image) }}" alt="">
                                 </div>
-                            </div>
-                            <div class="featured-game-content featured-game-overlay-content">
-                                <div class="featured-game-icon"><img src="{{ asset('site/img/icon/featured_game_icon.png') }}" alt=""></div>
-                                <h4><a href="#">JUST FOR <span>GAMERS</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
+                                <div class="featured-game-content">
+                                    <h4><a href="#">{{ $game->game_name }} <span>{{ $game->game_type }}</span></a></h4>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="featured-game-item mb-30">
-                            <div class="featured-game-thumb">
-                                <img src="{{ asset('site/img/images/s_featured_game_thumb02.jpg') }}" alt="">
-                            </div>
-                            <div class="featured-game-content">
-                                <h4><a href="#">Need FOR <span>Speed</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
-                                </div>
-                            </div>
-                            <div class="featured-game-content featured-game-overlay-content">
-                                <div class="featured-game-icon"><img src="{{ asset('site/img/icon/featured_game_icon.png') }}" alt=""></div>
-                                <h4><a href="#">Need FOR <span>Speed</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
+                                <div class="featured-game-content featured-game-overlay-content">
+                                    <div class="featured-game-icon"><img
+                                            src="{{ asset('site/img/icon/featured_game_icon.png') }}" alt=""></div>
+                                    <h4><a href="#">J{{ $game->game_name }}</a></h4>
+                                    <div class="featured-game-meta">
+                                        <i class="fas fa-bell"></i>
+                                        <span>{{ $game->game_type }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="featured-game-item mb-30">
-                            <div class="featured-game-thumb">
-                                <img src="{{ asset('site/img/images/s_featured_game_thumb03.jpg') }}" alt="">
-                            </div>
-                            <div class="featured-game-content">
-                                <h4><a href="#">egypt hunting <span>GAMERS</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
-                                </div>
-                            </div>
-                            <div class="featured-game-content featured-game-overlay-content">
-                                <div class="featured-game-icon"><img src="{{ asset('site/img/icon/featured_game_icon.png') }}" alt=""></div>
-                                <h4><a href="#">egypt hunting <span>GAMERS</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="featured-game-item mb-30">
-                            <div class="featured-game-thumb">
-                                <img src="{{ asset('site/img/images/s_featured_game_thumb04.jpg') }}" alt="">
-                            </div>
-                            <div class="featured-game-content">
-                                <h4><a href="#">JUST FOR <span>GAMERS</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
-                                </div>
-                            </div>
-                            <div class="featured-game-content featured-game-overlay-content">
-                                <div class="featured-game-icon"><img src="{{ asset('site/img/icon/featured_game_icon.png') }}" alt=""></div>
-                                <h4><a href="#">JUST FOR <span>GAMERS</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="featured-game-item mb-30">
-                            <div class="featured-game-thumb">
-                                <img src="{{ asset('site/img/images/s_featured_game_thumb02.jpg') }}" alt="">
-                            </div>
-                            <div class="featured-game-content">
-                                <h4><a href="#">Need FOR <span>Speed</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
-                                </div>
-                            </div>
-                            <div class="featured-game-content featured-game-overlay-content">
-                                <div class="featured-game-icon"><img src="{{ asset('site/img/icon/featured_game_icon.png') }}" alt=""></div>
-                                <h4><a href="#">Need FOR <span>Speed</span></a></h4>
-                                <div class="featured-game-meta">
-                                    <i class="fas fa-bell"></i>
-                                    <span>Playstation 5 , Xbox</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -342,106 +234,33 @@
                     <div class="col-xl-6 col-lg-8">
                         <div class="section-title home-four-title text-center mb-35">
                             <h2>gaming product <span>corner</span></h2>
-                            <p>Compete with 100 players on a remote island for winner takes showdown known issue where certain skin strategic</p>
+                            <p>Compete with 100 players on a remote island for winner takes showdown known issue where
+                                certain skin strategic</p>
                         </div>
                     </div>
                 </div>
                 <div class="row product-active">
-                    <div class="col-xl-3">
-                        <div class="shop-item">
-                            <div class="product-thumb">
-                                <a href="#"><img src="{{ asset('site/img/product/s_product_img01.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="product-content">
-                                <div class="product-tag"><a href="#">t-shirt</a></div>
-                                <h4><a href="#">Women Black T-shirt</a></h4>
-                                <div class="product-meta">
-                                    <div class="product-price">
-                                        <h5>$29.00</h5>
-                                    </div>
-                                    <div class="product-cart-action">
-                                        <a href="#"><i class="fas fa-shopping-basket"></i></a>
+                    @foreach($products as $product)
+                        <div class="col-xl-3">
+                            <div class="shop-item">
+                                <div class="product-thumb">
+                                    <a href="#"><img src="{{ asset('products/' . $product->image) }}" alt=""></a>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-tag"><a href="#">{{ $product->category }}</a></div>
+                                    <h4><a href="#">{{ $product->product_name }}</a></h4>
+                                    <div class="product-meta">
+                                        <div class="product-price">
+                                            <h5>Rs. {{ number_format($product->price) }}</h5>
+                                        </div>
+                                        <div class="product-cart-action">
+                                            <a href="{{ route('site.add-cart', $product->id) }}"><i class="fas fa-shopping-basket"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="shop-item">
-                            <div class="product-thumb">
-                                <a href="#"><img src="{{ asset('site/img/product/s_product_img02.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="product-content">
-                                <div class="product-tag"><a href="#">x-box</a></div>
-                                <h4><a href="#">Gears 5 Xbox Controller</a></h4>
-                                <div class="product-meta">
-                                    <div class="product-price">
-                                        <h5>$29.00</h5>
-                                    </div>
-                                    <div class="product-cart-action">
-                                        <a href="#"><i class="fas fa-shopping-basket"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="shop-item">
-                            <div class="product-thumb">
-                                <a href="#"><img src="{{ asset('site/img/product/s_product_img03.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="product-content">
-                                <div class="product-tag"><a href="#">graphics</a></div>
-                                <h4><a href="#">GeForce RTX 2070</a></h4>
-                                <div class="product-meta">
-                                    <div class="product-price">
-                                        <h5>$29.00</h5>
-                                    </div>
-                                    <div class="product-cart-action">
-                                        <a href="#"><i class="fas fa-shopping-basket"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="shop-item">
-                            <div class="product-thumb">
-                                <a href="#"><img src="{{ asset('site/img/product/s_product_img04.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="product-content">
-                                <div class="product-tag"><a href="#">VR-Box</a></div>
-                                <h4><a href="#">Virtual Reality Smiled</a></h4>
-                                <div class="product-meta">
-                                    <div class="product-price">
-                                        <h5>$29.00</h5>
-                                    </div>
-                                    <div class="product-cart-action">
-                                        <a href="#"><i class="fas fa-shopping-basket"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="shop-item">
-                            <div class="product-thumb">
-                                <a href="#"><img src="{{ asset('site/img/product/s_product_img04.jpg') }}" alt=""></a>
-                            </div>
-                            <div class="product-content">
-                                <div class="product-tag"><a href="#">VR-Box</a></div>
-                                <h4><a href="#">Virtual Reality Smiled</a></h4>
-                                <div class="product-meta">
-                                    <div class="product-price">
-                                        <h5>$29.00</h5>
-                                    </div>
-                                    <div class="product-cart-action">
-                                        <a href="#"><i class="fas fa-shopping-basket"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -454,7 +273,8 @@
                     <div class="col-xl-6 col-lg-8">
                         <div class="section-title home-four-title black-title text-center mb-65">
                             <h2>Latest News & <span>Articles</span></h2>
-                            <p>Compete with 100 players on a remote island for winner takes showdown known issue where certain skin strategic</p>
+                            <p>Compete with 100 players on a remote island for winner takes showdown known issue where
+                                certain skin strategic</p>
                         </div>
                     </div>
                 </div>
@@ -462,54 +282,58 @@
                     <div class="col-lg-4 col-md-6 col-sm-9">
                         <div class="blog-post home-four-blog-post mb-50">
                             <div class="blog-thumb mb-30">
-                                <a href="#"><img src="{{ asset('site/img/blog/home_four_blog_thumb01.jpg') }}" alt=""></a>
+                                <a href="{{ route('site.blog', 1) }}"><img src="{{ asset('site/img/blog/2.jpg') }}"
+                                                 alt=""></a>
                             </div>
                             <div class="blog-post-content">
                                 <div class="blog-meta">
                                     <ul>
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-calendar-alt"></i>september 19, 2020</li>
+                                        <li><i class="far fa-calendar-alt"></i>August 28, 2021</li>
                                     </ul>
                                 </div>
-                                <h4><a href="#">Shooter action video</a></h4>
-                                <p>Compete with 100 players on a remote island thats winner takes showdown known issue.</p>
-                                <a href="blog-details.html" class="read-more">Read More <i class="fas fa-caret-right"></i></a>
+                                <h4><a href="{{ route('site.blog', 1) }}">Smaller Marvel Game Turned Out Better Than Big Budget Avengers</a></h4>
+                                <p>Marvel Future Revolution is a new mobile action RPG starring Spider-Man and other heroes</p>
+                                <a href="{{ route('site.blog', 1) }}" class="read-more">Read More <i
+                                        class="fas fa-caret-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-9">
                         <div class="blog-post home-four-blog-post mb-50">
                             <div class="blog-thumb mb-30">
-                                <a href="#"><img src="{{ asset('site/img/blog/home_four_blog_thumb02.jpg') }}" alt=""></a>
+                                <a href="{{ route('site.blog', 2) }}"><img src="{{ asset('site/img/blog/1.jpg') }}"
+                                                 alt=""></a>
                             </div>
                             <div class="blog-post-content">
                                 <div class="blog-meta">
                                     <ul>
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-calendar-alt"></i>september 19, 2020</li>
+                                        <li><i class="far fa-calendar-alt"></i>August 27, 2021</li>
                                     </ul>
                                 </div>
-                                <h4><a href="#">THE WALKING DEAD</a></h4>
-                                <p>Compete with 100 players on a remote island thats winner takes showdown known issue.</p>
-                                <a href="blog-details.html" class="read-more">Read More <i class="fas fa-caret-right"></i></a>
+                                <h4><a href="{{ route('site.blog', 2) }}">Epic Disables Disrespectful Fortnite Emotes In The Martin Luther King
+                                        Event</a></h4>
+                                <p>The March Through Time event will only allow things like protest signs</p>
+                                <a href="{{ route('site.blog', 2) }}" class="read-more">Read More <i
+                                        class="fas fa-caret-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-9">
                         <div class="blog-post home-four-blog-post mb-50">
                             <div class="blog-thumb mb-30">
-                                <a href="#"><img src="{{ asset('site/img/blog/home_four_blog_thumb03.jpg') }}" alt=""></a>
+                                <a href="{{ route('site.blog', 3) }}"><img src="{{ asset('site/img/blog/3.jpg') }}"
+                                                 alt=""></a>
                             </div>
                             <div class="blog-post-content">
                                 <div class="blog-meta">
                                     <ul>
-                                        <li><i class="far fa-user"></i><a href="#">Admin</a></li>
-                                        <li><i class="far fa-calendar-alt"></i>september 19, 2020</li>
+                                        <li><i class="far fa-calendar-alt"></i>August 24, 2021</li>
                                     </ul>
                                 </div>
-                                <h4><a href="#">DEFENSE OF THE ANCIENTS</a></h4>
-                                <p>Compete with 100 players on a remote island thats winner takes showdown known issue.</p>
-                                <a href="blog-details.html" class="read-more">Read More <i class="fas fa-caret-right"></i></a>
+                                <h4><a href="{{ route('site.blog', 3) }}">Here's All The New Elden Ring News Worth Knowing</a></h4>
+                                <p>Plumbing today’s previews for all of FromSoftware’s hot Elden Ring gos</p>
+                                <a href="{{ route('site.blog', 3) }}" class="read-more">Read More <i
+                                        class="fas fa-caret-right"></i></a>
                             </div>
                         </div>
                     </div>

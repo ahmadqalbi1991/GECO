@@ -17,8 +17,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-4">
-                        <div class="card-body px-0 pt-0 pb-2">
-                            <form action="{{ route('admin.games.update', $game->id) }}" method="POST" enctype="multipart/form-data">
+                        <div class="card-body ">
+                            <form action="{{ route('admin.games.update', $game->id) }}" method="POST"
+                                  enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT">
                                 <div class="row">
@@ -26,22 +27,46 @@
                                         <div class="form-group">
                                             <label for="game_name" class="control-label">Game Name</label>
                                             <input type="text" placeholder="Please enter game name" name="game_name"
-                                                       id="game_name" class="form-control" value="{{ $game->game_name }}" >
+                                                   id="game_name" class="form-control" value="{{ $game->game_name }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <label for="game_type" class="control-label">Game Type</label>
                                         <select name="game_type" id="game_type" class="form-control">
                                             <option value="">Select Type</option>
-                                            <option {{ $game->game_type == 'action' ? 'selected' : NULL }} value="action">Action</option>
-                                            <option {{ $game->game_type == 'rpg' ? 'selected' : NULL }} value="rpg">Role Playing Game (RPG)</option>
-                                            <option {{ $game->game_type == 'mmo' ? 'selected' : NULL }} value="mmo">Massively Multiplayer Online (MMO)</option>
-                                            <option {{ $game->game_type == 'action_adventure' ? 'selected' : NULL }} value="action_adventure">Action Adventure</option>
-                                            <option {{ $game->game_type == 'adventure' ? 'selected' : NULL }} value="adventure">Adventure</option>
-                                            <option {{ $game->game_type == 'simulation' ? 'selected' : NULL }} value="simulation">Simulation</option>
-                                            <option {{ $game->game_type == 'strategy' ? 'selected' : NULL }} value="strategy">Strategy</option>
-                                            <option {{ $game->game_type == 'puzzle' ? 'selected' : NULL }} value="puzzle">Puzzle</option>
-                                            <option {{ $game->game_type == 'idle' ? 'selected' : NULL }} value="idle">Idle</option>
+                                            <option
+                                                {{ $game->game_type == 'action' ? 'selected' : NULL }} value="action">
+                                                Action
+                                            </option>
+                                            <option {{ $game->game_type == 'rpg' ? 'selected' : NULL }} value="rpg">Role
+                                                Playing Game (RPG)
+                                            </option>
+                                            <option {{ $game->game_type == 'mmo' ? 'selected' : NULL }} value="mmo">
+                                                Massively Multiplayer Online (MMO)
+                                            </option>
+                                            <option
+                                                {{ $game->game_type == 'action_adventure' ? 'selected' : NULL }} value="action_adventure">
+                                                Action Adventure
+                                            </option>
+                                            <option
+                                                {{ $game->game_type == 'adventure' ? 'selected' : NULL }} value="adventure">
+                                                Adventure
+                                            </option>
+                                            <option
+                                                {{ $game->game_type == 'simulation' ? 'selected' : NULL }} value="simulation">
+                                                Simulation
+                                            </option>
+                                            <option
+                                                {{ $game->game_type == 'strategy' ? 'selected' : NULL }} value="strategy">
+                                                Strategy
+                                            </option>
+                                            <option
+                                                {{ $game->game_type == 'puzzle' ? 'selected' : NULL }} value="puzzle">
+                                                Puzzle
+                                            </option>
+                                            <option {{ $game->game_type == 'idle' ? 'selected' : NULL }} value="idle">
+                                                Idle
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -52,7 +77,9 @@
                                             <div class="input-group mb-4">
                                                 <span class="input-group-text"><i
                                                         class="ni ni-calendar-grid-58"></i></span>
-                                                <input value="{{ date('d-m-Y', strtotime($game->release_date)) }}" placeholder="Please select date" name="release_date" type="text" class="form-control" id="datepicker">
+                                                <input value="{{ date('d-m-Y', strtotime($game->release_date)) }}"
+                                                       placeholder="Please select date" name="release_date" type="text"
+                                                       class="form-control" id="datepicker">
                                             </div>
                                         </div>
                                     </div>
@@ -116,11 +143,11 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-        $( function() {
-            $( "#datepicker" ).datepicker({
+        $(function () {
+            $("#datepicker").datepicker({
                 format: "dd-mm-yyyy"
             });
-        } );
+        });
     </script>
 
 @endsection

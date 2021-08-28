@@ -647,5 +647,20 @@ function wowAnimation() {
 	wow.init();
 }
 
+    $('.username').on('keyup', function () {
+        var url = $("meta[name='url']").attr("content");
+        $.ajax({
+            url: url + '/get-pubg-player',
+            type: 'post',
+            data: {username: $(this).val()},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                $(this).find('.span-message').text(response.message);
+            }
+        })
+    })
+
 
 })(jQuery);
