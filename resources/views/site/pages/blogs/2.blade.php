@@ -31,7 +31,7 @@
                     <div class="col-lg-8">
                         <div class="blog-list-post blog-details-wrap">
                             <div class="blog-list-post-content">
-                                <h2>Smaller Marvel Game Turned Out Better Than Big Budget Avengers</h2>
+                                <h2>Epic Disables Disrespectful Fortnite Emotes In The Martin Luther King Event</h2>
                                 <div class="blog-meta">
                                     <ul>
                                         <li>28 August, 2021</li>
@@ -66,7 +66,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="blog-details-img">
-                                            <img src="{{ asset('site/img/blog/2.jpg') }}" alt="">
+                                            <img src="{{ asset('site/img/blog/1.jpg') }}" alt="">
                                         </div>
                                     </div>
                                 </div>

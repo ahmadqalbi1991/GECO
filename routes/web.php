@@ -26,15 +26,14 @@ Route::post('/get-pubg-player', [Site\TournamentController::class, 'getPlayerDet
 /*
  * Admin Routes
  */
-Route::prefix('admin')->group(function () {
-    Route::name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/login', [Admin\AdminController::class, 'login'])->name('login');
         Route::get('/dashboard', [Admin\AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('/logout', [Admin\AdminController::class, 'logout'])->name('logout');
         Route::resource('/games', 'Admin\GameController');
         Route::resource('/tournaments', 'Admin\TournamentController');
         Route::resource('/products', 'Admin\ProductController');
-    });
+        Route::resource('/setting', 'Admin\SettingController');
 });
 
 /*
@@ -61,8 +60,9 @@ Route::name('site.')->group(function () {
     Route::post('/update-cart', [Site\HomeController::class, 'updateCart'])->name('update-cart');
     Route::get('/checkout', [Site\HomeController::class, 'checkout'])->name('checkout');
     Route::post('/create-order', [Site\HomeController::class, 'updateShipment'])->name('update-shipment');
-    Route::get('/payment-success/{order_number}', [Site\HomeController::class, 'successCart'])->name('cart-success');
+    Route::get('/payment-success/{order_number}/{id}', [Site\HomeController::class, 'successCart'])->name('cart-success');
     Route::get('/blog/{id}', [Site\HomeController::class, 'blog'])->name('blog');
+    Route::get('/download-shop-invoice/{id}', [Site\HomeController::class, 'downloadShopInvoice'])->name('download-shop-invoice');
 });
 Route::post('/get-pubg-player', [Site\TournamentController::class, 'getPlayerDetail']);
 

@@ -8,10 +8,13 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Tournament;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Session;
+use Srmklive\PayPal\Facades\PayPal;
+use Srmklive\PayPal\Services\ExpressCheckout;
 
 class HomeController extends Controller
 {
@@ -137,7 +140,8 @@ class HomeController extends Controller
             'order_no' => 'order_'.str_pad((isset($latestOrder->id) ? $latestOrder->id : 0)  + 1, 4, "0", STR_PAD_LEFT),
             'total' =>  $total,
             'order_status' => 'pending',
-            'payment_status' => 'pending'
+            'payment_status' => 'pending',
+            'created_at' => Carbon::now()
         ];
 
         $order_id = Order::insertGetId($order);
@@ -172,8 +176,6 @@ class HomeController extends Controller
             'email' => 'required|email',
             'shipping_address' => 'required',
             'contact_number' => 'required',
-            'payment_method' => 'required',
-            'checkout_condition' => 'required',
         ]);
 
         if ($validation->fails()) {
@@ -184,9 +186,8 @@ class HomeController extends Controller
         $id = $input['order_id'];
         unset($input['_token']);
         unset($input['order_id']);
-        unset($input['checkout_condition']);
 
-        if (isset($input['payment_menthod']) && $input['payment_menthod'] == 'cod') {
+        if (isset($input['payment_method']) && $input['payment_method'] == 'cod') {
             $input['payment_status'] = 'done';
         }
 
@@ -194,7 +195,7 @@ class HomeController extends Controller
         if ($result) {
             $order_number = Order::where('id', $id)->pluck('order_no')->first();
             session()->forget('cart');
-            return redirect()->route('site.cart-success', $order_number);
+            return redirect()->route('site.cart-success', [$order_number, $id]);
         } else {
             return redirect()->back()->with(['status' => 'error', 'message' => 'Something went wrong']);
         }
@@ -204,12 +205,17 @@ class HomeController extends Controller
      * @param $order_number
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function successCart($order_number)
+    public function successCart($order_number, $id)
     {
         $data['title'] = 'Cart Success';
         $data['order_number'] = $order_number;
+        $data['order_id'] = $id;
 
         return view('site.pages.cart-success')->with($data);
+    }
+
+    public function downloadShopInvoice($id) {
+        dd($id);
     }
 
     public function blog($id) {

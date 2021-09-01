@@ -10,6 +10,9 @@
                             <h2>Thank you for shopping.</h2>
                             <h4>Your order has been placed against order number #{{ $order_number }}, You will receive
                                 your item(s) in 24 hours.</h4>
+                            <div class="form-group">
+                                <a href="{{ route('site.download-shop-invoice', $order_id) }}" class="btn btn-success">Download Invoice</a>
+                            </div>
                         </div>
                     </div>
                 </div>

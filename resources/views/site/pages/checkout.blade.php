@@ -5,7 +5,7 @@
         @if(!Session::has('message') && !Session::has('status'))
             <section class="contact-area pt-120 pb-120">
                 <div class="container">
-                    <form action="{{ route('site.update-shipment') }}" method="post">
+                    <form action="{{ route('site.update-shipment') }}" id="shipment_form" method="post">
                         @csrf
                         <input type="hidden" name="order_id" value="{{ $order_id }}">
                         <div class="row">
@@ -69,33 +69,17 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label>Payment Method</label><br>
-                                                    <label for="cod">
-                                                        <input type="radio" name="payment_method" id="cod" value="cod">
-                                                        Cash on delivery
-                                                    </label>
-                                                    &nbsp;&nbsp;
-                                                    <label for="jazz_cash">
-                                                        <input type="radio" name="payment_method" id="jazz_cash"
-                                                               value="jazz_cash">
-                                                        Jazz Cash
-                                                    </label>
+{{--                                                    <label>Payment Method</label><br>--}}
+{{--                                                    <label for="cod">--}}
+{{--                                                        <input type="radio" name="payment_method" id="cod" value="cod">--}}
+{{--                                                        Cash on delivery--}}
+{{--                                                    </label>--}}
+                                                    <div id="paypal-button-container"></div>
+
                                                     @error('payment_method')
                                                     <span class="error">{{ $message }}</span>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label for="checkout_condition">
-                                                    <input type="checkbox" name="checkout_condition"
-                                                           id="checkout_condition">
-                                                    I have read all conditions and terms for buying these items.
-                                                </label>
-                                                @error('checkout_condition')
-                                                <span class="error">{{ $message }}</span>
-                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -174,4 +158,31 @@
         @endif
     </main>
 
+    <script
+        src="https://www.paypal.com/sdk/js?client-id={{ site_setting('paypal_secret') }}"> // Required. Replace YOUR_CLIENT_ID with your sandbox
+        // client ID.
+    </script>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // This function sets up the details of the transaction, including the amount and line item details.
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '{{ $subtotal }}'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    if(details.status == 'COMPLETED') {
+                        $("#shipment_form").append('<input type="hidden" name="payment_status" value="done" >');
+                        $("#shipment_form").append('<input type="hidden" name="payment_method" value="paypal" >');
+                        $("#shipment_form").submit();
+                    }
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
 @endsection
