@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use Session;
 use Srmklive\PayPal\Facades\PayPal;
 use Srmklive\PayPal\Services\ExpressCheckout;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -214,8 +215,15 @@ class HomeController extends Controller
         return view('site.pages.cart-success')->with($data);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function downloadShopInvoice($id) {
-        dd($id);
+        $order = Order::findOrFail($id);
+        $pdf = PDF::loadView('pdfs.invoice', compact('order'));
+
+        return $pdf->download('invoice' . $order->order_no . '.pdf');
     }
 
     public function blog($id) {
