@@ -34,6 +34,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('/tournaments', 'Admin\TournamentController');
         Route::resource('/products', 'Admin\ProductController');
         Route::resource('/setting', 'Admin\SettingController');
+        Route::get('/orders', [Admin\OrderController::class, 'index'])->name('orders.index');
+        Route::post('/change-order-status', [Admin\OrderController::class, 'changeStatus'])->name('order-change-status');
 });
 
 /*
