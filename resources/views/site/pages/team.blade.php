@@ -3,33 +3,26 @@
 @section('content')
     <main>
 
-        @include('site.layout.breadcrumbs')
-
         <section class="upcoming-games-area contact-area upcoming-games-bg pt-120 pb-80">
             <div class="container">
                 <div class="card">
                     <div class="card-header">
                         <div class="section-title title-style-three mb-20">
-                            <h2><span>{{ $tournament->tournament_title }}</span></h2>
+                            <h2><span>{{ $team->team_title }}</span></h2>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="section-title title-style-three mb-20">
-                                    <h4>Description</h4>
+                                    <h4>Logo</h4>
                                 </div>
-                                <p>{{ $tournament->description }}</p>
+                                <img style="width: 250px" src="{{ asset('teams/' . $tournament->tournament_title . '/' . $team->team_logo) }}" alt="">
                                 <hr>
                                 <div class="section-title title-style-three mb-20">
                                     <h4>Game</h4>
                                 </div>
                                 <p>{{ $tournament->game->game_name }}</p>
-                                <hr>
-                                <div class="section-title title-style-three mb-20">
-                                    <h4>Max Allowed</h4>
-                                </div>
-                                <p>{{ $tournament->max_allow }} {{ $tournament->tournament_type === 'team' ? 'Teams' : 'Players' }}</p>
                                 <hr>
                                 <div class="section-title title-style-three mb-20">
                                     <h4>Rules</h4>
@@ -38,29 +31,27 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="section-title title-style-three mb-20">
-                                    <h4>Start Date</h4>
-                                </div>
-                                <p>{{ date('d M, Y', strtotime($tournament->tournament_start_date)) }}</p>
-                                <hr>
-                                <div class="section-title title-style-three mb-20">
                                     <h4>Start Time</h4>
                                 </div>
-                                <p>{{ date('h:m:i a', strtotime($tournament->start_time)) }}</p>
-                                <hr>
-                                <div class="section-title title-style-three mb-20">
-                                    <h4>Joined {{ $tournament->tournament_type === 'team' ? 'Teams' : 'Players' }}</h4>
-                                </div>
-                                <p>{{ $tournament->orders->count() }} {{ $tournament->tournament_type === 'team' ? 'Teams' : 'Players' }}</p>
+                                <p>{{ $team->tournament_joining_date ? date('d M, Y (h:m i)', strtotime($team->tournament_joining_date)) : '-----'
+                                }}</p>
                                 <hr>
                                 <div class="section-title title-style-three mb-20">
                                     <h4>Status</h4>
                                 </div>
-                                <p>{{ ucwords($tournament->status) }}</p>
+                                <p>{{ ucwords($team->team_status) }}</p>
+                                <hr>
+                                <div class="section-title title-style-three mb-20">
+                                    <h4>{{ $tournament->tournament_type === 'team' ? 'Team' : 'Player' }}</h4>
+                                </div>
+                                @foreach($team->users as $user)
+                                    <p>{{ $user->username }}</p>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('site.tournament.register', $tournament->id) }}" class="btn btn-primary">Participate</a>
+{{--                        <a href="{{ route('site.tournament.team.edit', $team->id) }}" class="btn btn-primary">Edit</a>--}}
                     </div>
                 </div>
             </div>

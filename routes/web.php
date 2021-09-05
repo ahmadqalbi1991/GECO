@@ -55,6 +55,11 @@ Route::name('site.')->group(function () {
     Route::name('tournament.')->group(function () {
         Route::get('/tournament/{id}', [Site\TournamentController::class, 'tournamentDetail'])->name('detail');
         Route::get('/tournament/register/{id}', [Site\TournamentController::class, 'tournamentRegister'])->name('register');
+        Route::post('/tournament/pay', [Site\TournamentController::class, 'payTournament'])->name('pay');
+        Route::name('team.')->group(function () {
+            Route::get('/tournament-joined-team/{id}', [Site\TournamentController::class, 'teamView'])->name('view');
+            Route::get('/team-edit/{id}', [Site\TournamentController::class, 'editPlayer'])->name('edit');
+        });
     });
     Route::get('add-cart/{id}', [Site\HomeController::class, 'addCart'])->name('add-cart');
     Route::get('remove-cart-item/{id}', [Site\HomeController::class, 'removeCartItem'])->name('remove-cart-item');

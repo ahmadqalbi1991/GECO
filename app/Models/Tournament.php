@@ -22,7 +22,17 @@ class Tournament extends Model
         'price'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function game() {
-        return $this->belongsTo('App\Models\Game');
+        return $this->belongsTo(Game::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders() {
+        return $this->hasMany(TournamentOrder::class);
     }
 }

@@ -13,44 +13,109 @@
                             <h2><span>{{ $tournament->tournament_title }}</span></h2>
                         </div>
                     </div>
-                    <form action="" method="post">
+                    <form action="{{ route('site.tournament.pay') }}" method="post" id="tournament-form" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="tournament_id" value="{{ $tournament->id }}">
                         <div class="card-body">
+                            <p><strong>Note: </strong>Team name and logo cannot be replaced.</p>
                             <div class="row">
+                                <div class="col-12">
+                                    <label for="team_title">Team Title</label>
+                                    <input type="text" name="team_title" id="team_title" class="form-control @error('team_title') is-invalid
+@enderror"
+                                           placeholder="Enter Your Team Title">
+                                    @error('team_title')
+                                    <span>
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row" id="players">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Player 1</label>
-                                        <input type="text" name="player_1" id="player_1" class="form-control username">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Player 2</label>
-                                        <input type="text" name="player_2" id="player_2" class="form-control username">
+                                        <input type="text" name="usernames[]" id="username1" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Player 3</label>
-                                        <input type="text" name="player_3" id="player_3" class="form-control username">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Player 4</label>
-                                        <input type="text" name="player_4" id="player_4" class="form-control username">
-                                    </div>
+                                <div class="col-6">
+                                    <label for="image">Team Logo</label>
+                                    <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror ">
+                                    @error('image')
+                                    <span>
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
+                            @if($tournament->tournament_type == 'team')
+                                <div class="row">
+                                    <div class="col-12 text-right">
+                                        <a href="javascript:void(0)" onclick="addTeam()"><i class="fas fa-plus"></i> Add Team Player</a>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="card-footer">
+                            @if($tournament->price == 0)
+                                <button type="submit" class="btn btn-success">Join</button>
+                            @else
+                                <div id="paypal-button-container"></div>
+                            @endif
                         </div>
                     </form>
-                    <div class="card-footer">
-                        <a href="{{ route('site.tournament.register', $tournament->id) }}" class="btn btn-primary">Join Participate</a>
-                    </div>
                 </div>
             </div>
         </section>
     </main>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id={{ site_setting('paypal_secret') }}"> // Required. Replace YOUR_CLIENT_ID with your sandbox
+        // client ID.
+    </script>
+    <script>
+        paypal.Buttons({
+            createOrder: function (data, actions) {
+                // This function sets up the details of the transaction, including the amount and line item details.
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '{{ $tournament->price }}'
+                        }
+                    }]
+                });
+            },
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    if (details.status == 'COMPLETED') {
+                        $("#tournament-form").append('<input type="hidden" name="payment_method" value="paypal">');
+                        $("#tournament-form").submit();
+                    }
+                });
+            }
+        }).render('#paypal-button-container');
+
+        var i = 1;
+
+        function addTeam() {
+            i++;
+
+            if (i >= 5) {
+                i--;
+                alert("You cannot add more players");
+                return false;
+            }
+
+            var html = '<div class="col-md-6">' +
+                '<div class="form-group">' +
+                '<label>Player ' + i + '</label>' +
+                '<input type="text" name="usernames[]" id="username' + i + '" class="form-control" required>' +
+                '</div>' +
+                '</div>';
+
+            $("#players").append(html)
+        }
+    </script>
 
 @endsection
