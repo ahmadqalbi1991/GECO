@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Models\Tournament;
+use App\Models\TournamentOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -212,5 +213,19 @@ class TournamentController extends Controller
         } else {
             return redirect()->back()->with(['status' => 'error', 'message' => 'Something went wrong']);
         }
+    }
+
+    public function leaderboard() {
+        $data['title'] = 'Leaderboard';
+        $teams = TournamentOrder::all();
+        $ranks = $teams->unique('points')
+            ->values()
+            ->mapWithKeys(function ($item, $index) {
+                return [$item['points'] => $index + 1];
+            });
+        $data['teams'] = $teams;
+        $data['ranks'] = $ranks;
+
+        return view('admin.pages.leaderboard')->with($data);
     }
 }

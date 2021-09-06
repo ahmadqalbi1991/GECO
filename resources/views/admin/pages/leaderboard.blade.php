@@ -24,9 +24,9 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Team Title</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Joining Date</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Points</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Team Status</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Position</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -39,12 +39,10 @@
                                                     $team->team_logo)
                                                     }}" alt="">
                                                 </td>
-                                                <td class="text-center">{{ \Carbon\Carbon::parse($team->created_at)->format('d M, Y (h:m A)') }}</td>
-                                                <td class="text-center">{{ strtoupper($team->team_status) }}</td>
+                                                <td class="text-center">{{ $team->points }}</td>
+                                                <td class="text-center">{{ strtoupper(str_replace('_', ' ', $team->team_status)) }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('admin.team.view', $team->id) }}">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
+                                                   {{ $ranks[$team->points] }}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -56,7 +54,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {{ $teams->links() }}
                         </div>
                     </div>
                 </div>

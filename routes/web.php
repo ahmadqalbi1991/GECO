@@ -43,6 +43,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/save-team', [Admin\TeamController::class, 'saveTeam'])->name('update');
         Route::post('/wrong-username-mail', [Admin\TeamController::class, 'wrongUsername'])->name('send-wrong-user-mail');
     });
+    Route::get('/leader-board', [Admin\TournamentController::class, 'leaderboard'])->name('leaderboard');
 });
 
 /*

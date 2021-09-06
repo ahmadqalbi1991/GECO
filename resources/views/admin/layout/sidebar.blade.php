@@ -40,16 +40,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ (Request::is('admin/tournaments') ? 'active' : '') }}" href="{{ route('admin.tournaments.index') }}">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <span class="icons">
-                                <i class="fab fa-steam"></i>
-                            </span>
-                    </div>
-                    <span class="nav-link-text ms-1">Tournaments</span>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link {{ (Request::is('admin/products') ? 'active' : '') }}" href="{{ route('admin.products.index') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="icons">
@@ -57,6 +47,26 @@
                             </span>
                     </div>
                     <span class="nav-link-text ms-1">Products</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ (Request::is('admin/orders') ? 'active' : '') }}" href="{{ route('admin.orders.index') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <span class="icons">
+                                <i class="fas fa-list"></i>
+                            </span>
+                    </div>
+                    <span class="nav-link-text ms-1">Orders</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ (Request::is('admin/tournaments') ? 'active' : '') }}" href="{{ route('admin.tournaments.index') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <span class="icons">
+                                <i class="fab fa-steam"></i>
+                            </span>
+                    </div>
+                    <span class="nav-link-text ms-1">Tournaments</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -70,13 +80,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ (Request::is('admin/orders') ? 'active' : '') }}" href="{{ route('admin.orders.index') }}">
+                <a class="nav-link {{ (Request::is('admin/leaderboard') ? 'active' : '') }}" href="{{ route('admin.leaderboard') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="icons">
-                                <i class="fas fa-list"></i>
+                                <i class="fas fa-star"></i>
                             </span>
                     </div>
-                    <span class="nav-link-text ms-1">Orders</span>
+                    <span class="nav-link-text ms-1">Leader board</span>
                 </a>
             </li>
             <li class="nav-item">
