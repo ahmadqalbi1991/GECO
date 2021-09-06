@@ -58,7 +58,8 @@ class ProductController extends Controller
             'price' => 'required',
             'sku_code' => 'required',
             'description' => 'required',
-            'image' => 'required'
+            'image' => 'required',
+            'inventory' => 'required'
         ]);
 
         if ($validation->fails()) {

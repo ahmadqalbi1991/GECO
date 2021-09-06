@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label for="price" class="control-label">Price</label>
                                             <input placeholder="Please enter price" name="price" type="number"
@@ -62,6 +62,18 @@
                                                    value="{{ $product->price }}"
                                                    class="form-control @error('price') is-invalid @enderror">
                                             @error('price')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="inventory" class="control-label">Inventory</label>
+                                            <input placeholder="Please enter inventory" name="inventory" type="number"
+                                                   min="0"
+                                                   value="{{ $product->inventory }}"
+                                                   class="form-control @error('inventory') is-invalid @enderror">
+                                            @error('inventory')
                                             <span class="error">{{ $message }}</span>
                                             @enderror
                                         </div>

@@ -4954,3 +4954,9 @@ span.error{
     font-size: 18px;
     font-weight: 600;
 }
+
+.invnetory-note {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #e0e0e0;
+}

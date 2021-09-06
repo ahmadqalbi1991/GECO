@@ -26,6 +26,7 @@
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product Name</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SKU</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Stock</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
                                         <th class="text-secondary opacity-7"></th>
@@ -48,6 +49,7 @@
                                                 </td>
                                                 <td class="align-middle text-center text-sm">Rs.{{ $product->price }}</td>
                                                 <td class="align-middle text-center text-sm">{{ $product->sku_code }}</td>
+                                                <td class="align-middle text-center text-sm">{{ $product->inventory }}</td>
                                                 <td class="align-middle text-center text-sm">
                                                     <form action="{{ route('admin.products.update', $product->id) }}" method="post">
                                                         @csrf
@@ -57,7 +59,7 @@
                                                     </form>
                                                 </td>
 
-                                                <td class="align-middle" style="display: flex">
+                                                <td class="d-flex justify-content-center">
                                                     <a href="{{ route('admin.products.edit', $product->id) }}" class="badge btn-primary btn-sm m-r-5">
                                                         <i class="fas fa-pen"></i>
                                                     </a>

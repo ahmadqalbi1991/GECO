@@ -156,6 +156,9 @@ class HomeController extends Controller
                 ];
 
                 OrderItem::insert($item_array);
+                $product = Product::find($item['id']);
+                $product->inventory = $product->inventory - $item['qty'];
+                $product->save();
             }
         }
 

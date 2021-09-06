@@ -252,10 +252,14 @@
                                     <div class="product-meta">
                                         <div class="product-price">
                                             <h5>Rs. {{ number_format($product->price) }}</h5>
+                                            <span class="invnetory-note">{{ $product->inventory ? 'Available: ' . $product->inventory : 'OUT OF
+                                            STOCK' }}</span>
                                         </div>
-                                        <div class="product-cart-action">
-                                            <a href="{{ route('site.add-cart', $product->id) }}"><i class="fas fa-shopping-basket"></i></a>
-                                        </div>
+                                        @if($product->inventory)
+                                            <div class="product-cart-action">
+                                                <a href="{{ route('site.add-cart', $product->id) }}"><i class="fas fa-shopping-basket"></i></a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +287,7 @@
                         <div class="blog-post home-four-blog-post mb-50">
                             <div class="blog-thumb mb-30">
                                 <a href="{{ route('site.blog', 1) }}"><img src="{{ asset('site/img/blog/2.jpg') }}"
-                                                 alt=""></a>
+                                                                           alt=""></a>
                             </div>
                             <div class="blog-post-content">
                                 <div class="blog-meta">
@@ -302,7 +306,7 @@
                         <div class="blog-post home-four-blog-post mb-50">
                             <div class="blog-thumb mb-30">
                                 <a href="{{ route('site.blog', 2) }}"><img src="{{ asset('site/img/blog/1.jpg') }}"
-                                                 alt=""></a>
+                                                                           alt=""></a>
                             </div>
                             <div class="blog-post-content">
                                 <div class="blog-meta">
@@ -322,7 +326,7 @@
                         <div class="blog-post home-four-blog-post mb-50">
                             <div class="blog-thumb mb-30">
                                 <a href="{{ route('site.blog', 3) }}"><img src="{{ asset('site/img/blog/3.jpg') }}"
-                                                 alt=""></a>
+                                                                           alt=""></a>
                             </div>
                             <div class="blog-post-content">
                                 <div class="blog-meta">
