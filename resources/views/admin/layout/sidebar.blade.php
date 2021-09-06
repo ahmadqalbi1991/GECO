@@ -60,6 +60,16 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ (Request::is('admin/teams') ? 'active' : '') }}" href="{{ route('admin.team.index') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <span class="icons">
+                                <i class="fas fa-users"></i>
+                            </span>
+                    </div>
+                    <span class="nav-link-text ms-1">Teams</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ (Request::is('admin/orders') ? 'active' : '') }}" href="{{ route('admin.orders.index') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="icons">

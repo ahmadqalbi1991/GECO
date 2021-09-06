@@ -5,8 +5,8 @@
 <script src="{{ asset('admin/js/plugins/chartjs.min.js') }}"></script>
 <script src="{{ asset('admin/js/plugins/Chart.extension.js') }}"></script>
 <script src="{{ asset('admin/js/plugins/datepicker.js') }}"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
 {{--<script>--}}
 {{--    var ctx = document.getElementById("chart-bars").getContext("2d");--}}
 

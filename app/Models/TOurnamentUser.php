@@ -8,4 +8,11 @@ class TOurnamentUser extends Model
 {
     protected $table = 'tournament_users';
     protected $fillable = ['tournament_order_id', 'username'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tournament_order() {
+        return $this->belongsTo(TournamentOrder::class);
+    }
 }

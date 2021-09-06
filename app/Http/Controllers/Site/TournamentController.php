@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use App\Models\Tournament;
 use App\Models\TournamentOrder;
 use App\Models\TOurnamentUser;
@@ -133,5 +134,42 @@ class TournamentController extends Controller
         $data['title'] = 'Team';
 
         return view('site.pages.team-edit')->with($data);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function changeUsername($id) {
+        $user = TOurnamentUser::findOrFail($id);
+        $data['title'] = 'Invalid Username';
+        $data['user'] = $user;
+
+        return view('site.pages.invalid-username')->with($data);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function updateUsername(Request $request) {
+        $input = $request->except('_token');
+        $user = TOurnamentUser::find($input['id']);
+        $user->username = $input['username'];
+        if ($user->save()) {
+            $message = [
+                'user_id' => $user->tournament_order->user_id,
+                'name' => $user->tournament_order->user->name,
+                'email' => $user->tournament_order->user->email,
+                'subject' => 'Username Updated',
+                'message' => 'User has updated username for team ' . $user->tournament_order->team_title . '. New user name is ' . $input['username']
+            ];
+
+            Message::create($message);
+        }
+
+        $data['title'] = 'Username Submitted';
+
+        return view('site.pages.username-submit')->with($data);
     }
 }

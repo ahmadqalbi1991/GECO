@@ -27,15 +27,22 @@ Route::post('/get-pubg-player', [Site\TournamentController::class, 'getPlayerDet
  * Admin Routes
  */
 Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/login', [Admin\AdminController::class, 'login'])->name('login');
-        Route::get('/dashboard', [Admin\AdminController::class, 'dashboard'])->name('dashboard');
-        Route::get('/logout', [Admin\AdminController::class, 'logout'])->name('logout');
-        Route::resource('/games', 'Admin\GameController');
-        Route::resource('/tournaments', 'Admin\TournamentController');
-        Route::resource('/products', 'Admin\ProductController');
-        Route::resource('/setting', 'Admin\SettingController');
-        Route::get('/orders', [Admin\OrderController::class, 'index'])->name('orders.index');
-        Route::post('/change-order-status', [Admin\OrderController::class, 'changeStatus'])->name('order-change-status');
+    Route::get('/login', [Admin\AdminController::class, 'login'])->name('login');
+    Route::get('/dashboard', [Admin\AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/logout', [Admin\AdminController::class, 'logout'])->name('logout');
+    Route::resource('/games', 'Admin\GameController');
+    Route::resource('/tournaments', 'Admin\TournamentController');
+    Route::resource('/products', 'Admin\ProductController');
+    Route::resource('/setting', 'Admin\SettingController');
+    Route::get('/orders', [Admin\OrderController::class, 'index'])->name('orders.index');
+    Route::post('/change-order-status', [Admin\OrderController::class, 'changeStatus'])->name('order-change-status');
+    Route::name('team.')->group(function () {
+        Route::get('/teams', [Admin\TeamController::class, 'index'])->name('index');
+        Route::get('/team-view/{id}', [Admin\TeamController::class, 'view'])->name('view');
+        Route::post('/set-slot-number', [Admin\TeamController::class, 'setSlotNumber'])->name('set-slot');
+        Route::post('/save-team', [Admin\TeamController::class, 'saveTeam'])->name('update');
+        Route::post('/wrong-username-mail', [Admin\TeamController::class, 'wrongUsername'])->name('send-wrong-user-mail');
+    });
 });
 
 /*
@@ -59,6 +66,8 @@ Route::name('site.')->group(function () {
         Route::name('team.')->group(function () {
             Route::get('/tournament-joined-team/{id}', [Site\TournamentController::class, 'teamView'])->name('view');
             Route::get('/team-edit/{id}', [Site\TournamentController::class, 'editPlayer'])->name('edit');
+            Route::get('/wrong-username/{id}', [Site\TournamentController::class, 'changeUsername'])->name('change-username');
+            Route::post('/update-username', [Site\TournamentController::class, 'updateUsername'])->name('update-username');
         });
     });
     Route::get('add-cart/{id}', [Site\HomeController::class, 'addCart'])->name('add-cart');
