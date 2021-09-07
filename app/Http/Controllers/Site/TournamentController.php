@@ -169,6 +169,8 @@ class TournamentController extends Controller
         }
 
         $data['title'] = 'Username Submitted';
+        $data['message1'] = 'Thank you for updating username.';
+        $data['message2'] = 'We will contact you after reviewing your query in 24 hours. You will receive an email for tournament details.';
 
         return view('site.pages.username-submit')->with($data);
     }

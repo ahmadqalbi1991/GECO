@@ -53,6 +53,10 @@ Route::name('site.')->group(function () {
     Route::get('/', [Site\HomeController::class, 'home'])->name('home');
     Route::get('/games', [Admin\AdminController::class, 'login'])->name('games');
     Route::get('/tournaments', [Site\HomeController::class, 'tournaments'])->name('tournaments');
+    Route::get('/shop', [Site\HomeController::class, 'shop'])->name('shop');
+    Route::get('/about-us', [Site\HomeController::class, 'aboutUs'])->name('about');
+    Route::get('/contact-us', [Site\HomeController::class, 'contactUs'])->name('contact');
+    Route::post('/send-message', [Site\HomeController::class, 'sendMessage'])->name('send-message');
     Route::name('user.')->group(function () {
         Route::get('/user-verify/{code}/{id}', [Auth\AuthController::class, 'verify'])->name('verify');
         Route::get('/login', [Site\UserController::class, 'login'])->name('login');

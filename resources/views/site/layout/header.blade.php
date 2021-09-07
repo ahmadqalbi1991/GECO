@@ -31,6 +31,10 @@
                                 <ul>
                                     <li class="{{ Request::is('/') ? 'active' : NULL }}"><a
                                             href="{{ route('site.home') }}">Home</a></li>
+                                    <li class="{{ Request::is('about-us') ? 'active' : NULL }}"><a
+                                            href="{{ route('site.about') }}">About Us</a></li>
+                                    <li class="{{ Request::is('shop') ? 'active' : NULL }}"><a
+                                            href="{{ route('site.shop') }}">Shop</a></li>
                                     <li class="{{ Request::is('tournaments') ? 'active' : NULL }}"><a
                                             href="{{ route('site.tournaments') }}">Tournaments</a></li>
                                     @if(!Auth::user())
@@ -47,6 +51,8 @@
                                             </ul>
                                         </li>
                                     @endif
+                                    <li class="{{ Request::is('contact-us') ? 'active' : NULL }}"><a
+                                            href="{{ route('site.contact') }}">Contact Us</a></li>
                                 </ul>
                             </div>
                             <div class="header-action">

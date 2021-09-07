@@ -7,8 +7,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="registration-success">
-                            <h2>Thank you for updating username.</h2>
-                            <h4>You will receive an email for tournament details.</h4>
+                            <h2>{{ $message1 }}</h2>
+                            <h4>{{ $message2 }}</h4>
                         </div>
                     </div>
                 </div>

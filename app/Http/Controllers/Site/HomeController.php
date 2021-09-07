@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Game;
+use App\Models\Message;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -229,9 +230,45 @@ class HomeController extends Controller
         return $pdf->download('invoice' . $order->order_no . '.pdf');
     }
 
-    public function blog($id) {
-        $data['title'] = 'Blog Details';
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function shop() {
+        $data['title'] = 'Shop';
+        $data['bg'] = asset('site/img/images/tt.jpg');
+        $data['products'] = Product::latest()->paginate(12);
 
-        return view('site.pages.blogs.1')->with($data);
+        return view('site.pages.shop')->with($data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function aboutUs() {
+        $data['title'] = 'About Us';
+
+        return view('site.pages.about-us')->with($data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function contactUs() {
+        $data['title'] = 'Contact Us';
+        $data['bg'] = asset('site/img/images/tt.jpg');
+
+        return view('site.pages.contact')->with($data);
+    }
+
+    public function sendMessage(Request $request) {
+        $input = $request->except('_token');
+        $input['useer_id'] = Auth::user() ? Auth::id() : NULL;
+        Message::create($input);
+
+        $data['title'] = 'Message Sent';
+        $data['message1'] = 'Thank you for contacting us.';
+        $data['message2'] = 'We will contact you after reviewing your query in 24 hours.';
+
+        return view('site.pages.username-submit')->with($data);
     }
 }
