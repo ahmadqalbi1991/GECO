@@ -92,4 +92,21 @@ class TeamController extends Controller
 
         return TRUE;
     }
+
+    public function sendUsersEmail($id) {
+        $team = TournamentOrder::findOrFail($id);
+        $users = $team->users;
+        $data = [
+            'team' => $team,
+            'users' => $users
+        ];
+
+        Mail::send('email_templates.send-users', $data, function ($message) use($team) {
+            $message->subject("Tournament Details");
+            $message->from('admin@admin.com', 'GECO ADMIN');
+            $message->to($team->user->email);
+        });
+
+        return redirect()->back()->with(['status' => 'success', 'message' => 'Team details has been sent']);
+    }
 }

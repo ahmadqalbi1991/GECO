@@ -90,6 +90,16 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ (Request::is('admin/messages') ? 'active' : '') }}" href="{{ route('admin.messages') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <span class="icons">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                    </div>
+                    <span class="nav-link-text ms-1">Messages</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ (Request::is('admin/setting') ? 'active' : '') }}" href="{{ route('admin.setting.show', site_setting('id'))
                 }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">

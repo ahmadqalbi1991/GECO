@@ -33,6 +33,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/games', 'Admin\GameController');
     Route::resource('/tournaments', 'Admin\TournamentController');
     Route::resource('/products', 'Admin\ProductController');
+    Route::get('/messages', [Admin\MessageController::class, 'index'])->name('messages');
+    Route::get('/message-view/{id}', [Admin\MessageController::class, 'view'])->name('message.view');
+    Route::get('/message-reply/{id}', [Admin\MessageController::class, 'reply'])->name('message.reply');
+    Route::get('/message-delete/{id}', [Admin\MessageController::class, 'delete'])->name('message.delete');
+    Route::post('/reply', [Admin\MessageController::class, 'sendMessage'])->name('send.message');
     Route::resource('/setting', 'Admin\SettingController');
     Route::get('/orders', [Admin\OrderController::class, 'index'])->name('orders.index');
     Route::post('/change-order-status', [Admin\OrderController::class, 'changeStatus'])->name('order-change-status');
@@ -42,6 +47,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/set-slot-number', [Admin\TeamController::class, 'setSlotNumber'])->name('set-slot');
         Route::post('/save-team', [Admin\TeamController::class, 'saveTeam'])->name('update');
         Route::post('/wrong-username-mail', [Admin\TeamController::class, 'wrongUsername'])->name('send-wrong-user-mail');
+        Route::get('/send-users/{id}', [Admin\TeamController::class, 'sendUsersEmail'])->name('send-users-email');
     });
     Route::get('/leader-board', [Admin\TournamentController::class, 'leaderboard'])->name('leaderboard');
 });

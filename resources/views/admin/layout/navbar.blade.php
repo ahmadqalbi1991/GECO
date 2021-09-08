@@ -45,13 +45,15 @@
                         @endif
                     </a>
                     <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                        @foreach(\App\Models\Message::limit(5)->get() as $message)
+                        @foreach(\App\Models\Message::where('is_read', 0)->limit(5)->get() as $message)
                         <li class="mb-2">
                             <a class="dropdown-item border-radius-md" href="javascript:;">
                                 <div class="d-flex py-1">
                                     <div class="d-flex flex-column justify-content-center">
                                         <h6 class="text-sm font-weight-normal mb-1">
-                                            <span class="font-weight-bold">New message</span> from {{ $message->user->name }}
+                                            <span class="font-weight-bold">New message</span> from {{ isset($message->user->name) ?
+                                            $message->user->name :
+                                             $message->name }}
                                         </h6>
                                         <p class="text-xs text-secondary mb-0">
                                             <i class="fa fa-clock me-1"></i>

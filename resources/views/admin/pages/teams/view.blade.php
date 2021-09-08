@@ -107,6 +107,10 @@
                                 <div class="row">
                                     <input type="hidden" name="id" value="{{ $team->id }}">
                                     <div class="col-12 text-right">
+                                        @if(!$team->users->whereNull('slot_number')->count())
+                                            <a href="{{ route('admin.team.send-users-email', $team->id) }}" class="btn btn-info">Send Tournament
+                                                Detail</a>
+                                            @endif
                                         <button type="submit" class="btn btn-success">Save</button>
                                     </div>
                                 </div>
