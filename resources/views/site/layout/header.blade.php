@@ -37,6 +37,8 @@
                                             href="{{ route('site.shop') }}">Shop</a></li>
                                     <li class="{{ Request::is('tournaments') ? 'active' : NULL }}"><a
                                             href="{{ route('site.tournaments') }}">Tournaments</a></li>
+                                    <li class="{{ Request::is('contact-us') ? 'active' : NULL }}"><a
+                                            href="{{ route('site.contact') }}">Contact Us</a></li>
                                     @if(!Auth::user())
                                         <li class="{{ Request::is('login') ? 'active' : NULL }}"><a
                                                 href="{{ route('site.user.login') }}">Login</a></li>
@@ -51,8 +53,6 @@
                                             </ul>
                                         </li>
                                     @endif
-                                    <li class="{{ Request::is('contact-us') ? 'active' : NULL }}"><a
-                                            href="{{ route('site.contact') }}">Contact Us</a></li>
                                 </ul>
                             </div>
                             <div class="header-action">
@@ -122,8 +122,8 @@
                 <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form>
-                                <input type="text" placeholder="Search here...">
+                            <form action="{{ route('site.shop') }}">
+                                <input name="q" type="text" placeholder="Search Product">
                                 <button><i class="fa fa-search"></i></button>
                             </form>
                         </div>

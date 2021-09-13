@@ -17,7 +17,7 @@
                                     <p data-animation="fadeInUp" data-delay=".6s">Find technology or people for digital
                                         projects in public sector and Find an individual specialist develope
                                         researcher.</p>
-                                    <a href="#" class="btn btn-style-two" data-animation="fadeInUp" data-delay=".8s">READ
+                                    <a href="{{ route('site.blog', 1) }}" class="btn btn-style-two" data-animation="fadeInUp" data-delay=".8s">READ
                                         MORE</a>
                                 </div>
                             </div>
@@ -126,6 +126,8 @@
                                             <p>entry fee :
                                                 <span>Rs. {{ $tournament->price ? $tournament->price : 'free' }}</span>
                                             </p>
+                                            <p>@if(\Carbon\Carbon::parse($tournament->tournament_start_date)->format('Y-m-d') >= \Carbon\Carbon::now
+                                            ()->format('Y-m-d')) Open @else Ended @endif</p>
                                         </div>
                                     </div>
                                 @endforeach
@@ -163,21 +165,26 @@
             <section class="live-match-area fix pt-120 pb-110">
                 <div class="container custom-container-two">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="live-match-team">
-                                <img src="{{ asset('site/img/team/live_match_logo01.png') }}" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="live-match-time text-center">
-                                <span>upcoming live matches</span>
-                                <h2 class="time">08:30</h2>
-                                <h2 class="live-overlay-text">live</h2>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="live-match-team right">
-                                <img src="{{ asset('site/img/team/live_match_logo02.png') }}" alt="">
+                        <div class="col-12">
+                            <div class="latest-games-active owl-carousel">
+                                @foreach($upcoming_tournaments as $tournament)
+                                    <div class="latest-games-items mb-30">
+                                        <div class="latest-games-thumb">
+                                            <a href="#"><img
+                                                    src="{{ asset('games/tournaments/' . $tournament->image) }}" alt=""></a>
+                                        </div>
+                                        <div class="latest-games-content">
+                                            <div class="lg-tag">
+                                                <a href="#">{{ $tournament->game->game_type }}</a>
+                                            </div>
+                                            <h4><a href="#">{{ $tournament->game->game_name }}
+                                                    <span>{{ $tournament->game->game_name }}</span></a></h4>
+                                            <p>entry fee :
+                                                <span>Rs. {{ $tournament->price ? $tournament->price : 'free' }}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

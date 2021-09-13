@@ -34,6 +34,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/tournaments', 'Admin\TournamentController');
     Route::resource('/products', 'Admin\ProductController');
     Route::get('/messages', [Admin\MessageController::class, 'index'])->name('messages');
+    Route::get('/subscribers', [Admin\SubscriberController::class, 'index'])->name('subscribers');
     Route::get('/message-view/{id}', [Admin\MessageController::class, 'view'])->name('message.view');
     Route::get('/message-reply/{id}', [Admin\MessageController::class, 'reply'])->name('message.reply');
     Route::get('/message-delete/{id}', [Admin\MessageController::class, 'delete'])->name('message.delete');
@@ -61,6 +62,8 @@ Route::name('site.')->group(function () {
     Route::get('/tournaments', [Site\HomeController::class, 'tournaments'])->name('tournaments');
     Route::get('/shop', [Site\HomeController::class, 'shop'])->name('shop');
     Route::get('/about-us', [Site\HomeController::class, 'aboutUs'])->name('about');
+    Route::get('/terms-and-conditions', [Site\HomeController::class, 'terms'])->name('terms');
+    Route::get('/privacy-policy', [Site\HomeController::class, 'privacy'])->name('privacy');
     Route::get('/contact-us', [Site\HomeController::class, 'contactUs'])->name('contact');
     Route::post('/send-message', [Site\HomeController::class, 'sendMessage'])->name('send-message');
     Route::name('user.')->group(function () {
@@ -90,7 +93,31 @@ Route::name('site.')->group(function () {
     Route::get('/payment-success/{order_number}/{id}', [Site\HomeController::class, 'successCart'])->name('cart-success');
     Route::get('/blog/{id}', [Site\HomeController::class, 'blog'])->name('blog');
     Route::get('/download-shop-invoice/{id}', [Site\HomeController::class, 'downloadShopInvoice'])->name('download-shop-invoice');
+    Route::post('/subscribe', [Site\HomeController::class, 'subscribe'])->name('subscribe');
 });
 Route::post('/get-pubg-player', [Site\TournamentController::class, 'getPlayerDetail']);
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    echo 'Migrated';
+});
+
+Route::get('/config-clear', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    Artisan::call('session:table');
+    echo 'Clear';
+});
+
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    echo 'Storage Link';
+});
+
 
 

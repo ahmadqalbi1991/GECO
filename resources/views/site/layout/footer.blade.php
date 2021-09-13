@@ -10,10 +10,11 @@
                                 <h2>Our <span>Newsletter</span></h2>
                             </div>
                             <div class="newsletter-form">
-                                <form action="#">
+                                <form action="{{ route('site.subscribe') }}" method="post">
+                                    @csrf
                                     <div class="newsletter-form-grp">
                                         <i class="far fa-envelope"></i>
-                                        <input type="email" placeholder="Enter your email...">
+                                        <input name="email" type="email" placeholder="Enter your email for subscription">
                                     </div>
                                     <button>SUBSCRIBE <i class="fas fa-paper-plane"></i></button>
                                 </form>
@@ -51,11 +52,17 @@
                         </div>
                         <div class="fw-link">
                             <ul>
-                                <li><a href="#">Graphics (26)</a></li>
-                                <li><a href="#">Backgrounds (11)</a></li>
-                                <li><a href="#">Fonts (9)</a></li>
-                                <li><a href="#">Music (3)</a></li>
-                                <li><a href="#">Photography (3)</a></li>
+                                <li><a href="{{ route('site.shop') }}?cat=console">Console ({{ \App\Models\Product::where('category',
+                                'console')
+                                ->count() }})</a></li>
+                                <li><a href="{{ route('site.shop') }}?cat=headphones">Headphones ({{ \App\Models\Product::where('category',
+                                'headphones')->count() }})</a></li>
+                                <li><a href="{{ route('site.shop') }}?cat=gamepad">Gamepad ({{ \App\Models\Product::where('category', 'gamepad')
+                                ->count() }})</a></li>
+                                <li><a href="{{ route('site.shop') }}?cat=gamecontroller">Game Controller ({{ \App\Models\Product::where('category',
+                                'gamecontroller')->count() }})</a></li>
+                                <li><a href="{{ route('site.shop') }}?cat=games">Games ({{ \App\Models\Product::where('category', 'games')->count()
+                                 }})</a></li>
                             </ul>
                         </div>
                     </div>
@@ -67,16 +74,17 @@
                         </div>
                         <div class="fw-link">
                             <ul>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Refund Policy</a></li>
-                                <li><a href="#">Affiliate</a></li>
-                                <li><a href="#">FAQUse Cases</a></li>
+                                <li><a href="{{ route('site.terms') }}">Terms & Conditions</a></li>
+                                <li><a href="{{ route('site.privacy') }}">Privacy Policy</a></li>
+                                <li><a href="{{ route('site.shop') }}">Shop</a></li>
+                                <li><a href="{{ route('site.tournaments') }}">Tournaments</a></li>
+                                <li><a href="{{ route('site.about') }}">About Us</a></li>
+                                <li><a href="{{ route('site.contact') }}">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="col-xl-3 cseaol-lg-4 col-md-6">
                     <div class="footer-widget mb-50">
                         <div class="fw-title mb-35">
                             <h5>Follow us</h5>
@@ -95,8 +103,9 @@
                             <h5>Newsletter Sign Up</h5>
                         </div>
                         <div class="footer-newsletter">
-                            <form action="#">
-                                <input type="text" placeholder="Enter your email">
+                            <form action="{{ route('site.subscribe') }}" method="post">
+                                @csrf
+                                <input name="email" type="text" placeholder="Enter your email">
                                 <button><i class="fas fa-rocket"></i></button>
                             </form>
                         </div>
@@ -116,8 +125,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 d-none d-md-block">
-                    <div class="payment-method-img text-right">
-                        <img src="{{ asset('site/img/images/card_img.png') }}" alt="img">
+                    <div class="payment-method-img text-right" style="font-size: 30px">
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
                     </div>
                 </div>
             </div>

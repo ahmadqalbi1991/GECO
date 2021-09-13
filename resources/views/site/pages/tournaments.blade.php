@@ -17,7 +17,10 @@
                                             <span>{{ date('M d, Y', strtotime($tournament->tournament_start_date)) . ' ' . date('h:i A', strtotime($tournament->start_time)) }}</span>
                                             <h4><a href="#">{{ $tournament->tournament_title }}</a></h4>
                                             <p>{{ $tournament->game->game_name }}</p>
-                                            <span>0/{{ $tournament->max_allow }} {{ $tournament->tournament_type == 'team' ? 'Teams' : 'Players' }}</span>
+                                            <span>{{ $tournament->orders->count() }}/{{ $tournament->max_allow }} {{ $tournament->tournament_type ==
+                                            'team' ? 'Teams' :
+                                            'Players'
+                                            }}</span>
                                         </div>
                                         <div class="uc-game-price">
                                             <h5>{{ $tournament->price ? '$' . $tournament->price : 'FREE' }}</h5>

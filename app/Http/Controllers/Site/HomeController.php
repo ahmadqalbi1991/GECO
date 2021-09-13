@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Subscriber;
 use App\Models\Tournament;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,6 +30,8 @@ class HomeController extends Controller
         $data['products'] = Product::latest()->limit(10)->get();
         $data['games'] = Game::latest()->limit(10)->get();
         $data['tournaments'] = Tournament::latest()->limit(10)->get();
+        $data['upcoming_tournaments'] = Tournament::where('tournament_start_date', '>', Carbon::now()->format('Y-m-d'))->latest()->limit(10)->get();
+
         return view('site.pages.index')->with($data);
     }
 
@@ -233,10 +236,20 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function shop() {
+    public function shop(Request $request) {
+        $cat = $request->get('cat');
+        $search = $request->get('q');
         $data['title'] = 'Shop';
         $data['bg'] = asset('site/img/images/tt.jpg');
-        $data['products'] = Product::latest()->paginate(12);
+        $data['products'] = Product::latest()
+            ->when($cat, function ($q) use ($cat) {
+                return $q->where('category', $cat);
+            })
+            ->when($search, function ($q) use ($search) {
+                return $q->where('product_name', 'like', '%' . $search . '%')
+                    ->orWhere('category', 'like', '%' . $search . '%');
+            })
+            ->paginate(12);
 
         return view('site.pages.shop')->with($data);
     }
@@ -253,6 +266,24 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function terms() {
+        $data['title'] = 'Terms & Conditions';
+
+        return view('site.pages.terms')->with($data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function privacy() {
+        $data['title'] = 'Privacy Policy';
+
+        return view('site.pages.privacy')->with($data);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function contactUs() {
         $data['title'] = 'Contact Us';
         $data['bg'] = asset('site/img/images/tt.jpg');
@@ -260,6 +291,10 @@ class HomeController extends Controller
         return view('site.pages.contact')->with($data);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function sendMessage(Request $request) {
         $input = $request->except('_token');
         $input['useer_id'] = Auth::user() ? Auth::id() : NULL;
@@ -270,5 +305,22 @@ class HomeController extends Controller
         $data['message2'] = 'We will contact you after reviewing your query in 24 hours.';
 
         return view('site.pages.username-submit')->with($data);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function blog($id) {
+        $data['title'] = 'Blog';
+
+        return view('site.pages.blogs.' . $id)->with($data);
+    }
+
+    public function subscribe(Request $request) {
+        $input = $request->except('_token');
+
+        Subscriber::create($input);
+        return redirect()->back();
     }
 }
