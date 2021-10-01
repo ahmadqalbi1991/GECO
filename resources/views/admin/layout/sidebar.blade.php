@@ -110,7 +110,17 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ (Request::is('admin/setting') ? 'active' : '') }}" href="{{ route('admin.setting.show', site_setting('id'))
+                <a class="nav-link {{ (Request::is('admin/blogs') ? 'active' : '') }}" href="{{ route('admin.blogs.index') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <span class="icons">
+                                <i class="fas fa-list"></i>
+                            </span>
+                    </div>
+                    <span class="nav-link-text ms-1">Blogs</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ (Request::is('admin/setting') ? 'active' : '') }}" href="{{ route('admin.setting.show', 1)
                 }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="icons">

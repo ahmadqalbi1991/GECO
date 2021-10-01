@@ -59,7 +59,8 @@ class AuthController extends Controller
             'username' => 'required|unique:users',
             'confirm_password' => 'required|same:password',
             'terms' => 'required',
-            'country' => 'required'
+            'country' => 'required',
+            'image' => 'required'
         ]);
 
 

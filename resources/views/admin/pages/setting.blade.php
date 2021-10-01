@@ -61,6 +61,84 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="facebook_url" class="control-label">Facebook URL</label>
+                                            <input type="text" placeholder="" name="facebook_url"
+                                                   id="facebook_url"
+                                                   class="form-control @error('facebook_url') is-invalid @enderror"
+                                                   value="{{ $setting->facebook_url }}">
+                                            @error('facebook_url')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="twitter_url" class="control-label">Twitter URL</label>
+                                            <input type="text" placeholder="" name="twitter_url"
+                                                   id="twitter_url"
+                                                   class="form-control @error('twitter_url') is-invalid @enderror"
+                                                   value="{{ $setting->twitter_url }}">
+                                            @error('twitter_url')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="pinterst_url" class="control-label">Pinterest URL</label>
+                                            <input type="text" placeholder="" name="pinterst_url"
+                                                   id="pinterst_url"
+                                                   class="form-control @error('pinterst_url') is-invalid @enderror"
+                                                   value="{{ $setting->pinterst_url }}">
+                                            @error('pinterst_url')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="linkedin_url" class="control-label">Linkedin URL</label>
+                                            <input type="text" placeholder="" name="linkedin_url"
+                                                   id="linkedin_url"
+                                                   class="form-control @error('linkedin_url') is-invalid @enderror"
+                                                   value="{{ $setting->linkedin_url }}">
+                                            @error('linkedin_url')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="youtube_url" class="control-label">Youtube URL</label>
+                                            <input type="text" placeholder="" name="youtube_url"
+                                                   id="youtube_url"
+                                                   class="form-control @error('youtube_url') is-invalid @enderror"
+                                                   value="{{ $setting->youtube_url }}">
+                                            @error('youtube_url')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="streaming_url" class="control-label">Streaming URL</label>
+                                            <input type="text" placeholder="" name="streaming_url"
+                                                   id="streaming_url"
+                                                   class="form-control @error('streaming_url') is-invalid @enderror"
+                                                   value="{{ $setting->streaming_url }}">
+                                            @error('streaming_url')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">

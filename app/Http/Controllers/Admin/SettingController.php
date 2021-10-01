@@ -73,9 +73,7 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
-        unset($input['_method']);
-        unset($input['_token']);
+        $input = $request->except(['_token', '_method']);
         Setting::where('id', $id)->update($input);
         return redirect()->back()->withErrors(['status' => 'success', 'message' => 'Setting updated']);
     }

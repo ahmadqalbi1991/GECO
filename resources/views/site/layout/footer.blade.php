@@ -91,10 +91,10 @@
                         </div>
                         <div class="footer-social">
                             <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="{{ site_setting('facebook_url') }}"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="{{ site_setting('twitter_url') }}"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="{{ site_setting('pinterest_url') }}"><i class="fab fa-pinterest-p"></i></a></li>
+                                <li><a href="{{ site_setting('linkedin_url') }}"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>

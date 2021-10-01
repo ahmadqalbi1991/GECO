@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Country;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Game;
 use App\Models\Message;
 use App\Models\Order;
@@ -10,6 +12,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Subscriber;
 use App\Models\Tournament;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +34,7 @@ class HomeController extends Controller
         $data['games'] = Game::latest()->limit(10)->get();
         $data['tournaments'] = Tournament::latest()->limit(10)->get();
         $data['upcoming_tournaments'] = Tournament::where('tournament_start_date', '>', Carbon::now()->format('Y-m-d'))->latest()->limit(10)->get();
+        $data['blogs'] = Blog::latest()->limit(3)->get();
 
         return view('site.pages.index')->with($data);
     }
@@ -38,7 +42,8 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function tournaments() {
+    public function tournaments()
+    {
         $data['title'] = 'Tournaments';
         $data['bg'] = asset('site/img/images/tt.jpg');
         $tournaments = Tournament::whereIn('status', ['open', 'streaming'])
@@ -54,7 +59,8 @@ class HomeController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addCart(Request $request, $id) {
+    public function addCart(Request $request, $id)
+    {
         $product = Product::findOrFail($id)->toArray();
         $item = [
             'name' => $product['product_name'],
@@ -70,7 +76,7 @@ class HomeController extends Controller
             $carts = [];
         } else {
             foreach ($carts as $key => $cart) {
-                if($id == $cart['id']) {
+                if ($id == $cart['id']) {
                     $carts[$key]['qty'] = $carts[$key]['qty'] + 1;
                     $item = null;
                     break;
@@ -90,7 +96,8 @@ class HomeController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function removeCartItem(Request $request, $id) {
+    public function removeCartItem(Request $request, $id)
+    {
         $carts = session()->get('cart');
         unset($carts[$id]);
         $carts = array_values($carts);
@@ -101,7 +108,8 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function cart() {
+    public function cart()
+    {
         $data['title'] = 'Cart';
         $data['cart'] = session()->get('cart');
 
@@ -112,7 +120,8 @@ class HomeController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateCart(Request $request) {
+    public function updateCart(Request $request)
+    {
         $qty = $request->input('qty');
         $cart = session()->get('cart');
         foreach ($cart as $key => $item) {
@@ -127,14 +136,15 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function checkout() {
+    public function checkout()
+    {
         if (!Auth::user()) {
             return redirect()->route('site.user.login');
         }
 
         $cart = session()->get('cart');
 
-        $latestOrder = Order::orderBy('created_at','DESC')->first();
+        $latestOrder = Order::orderBy('created_at', 'DESC')->first();
         $total = 0;
         foreach ($cart as $item) {
             $total = $total + ($item['qty'] * $item['price']);
@@ -142,8 +152,8 @@ class HomeController extends Controller
 
         $order = [
             'user_id' => Auth::id(),
-            'order_no' => 'order_'.str_pad((isset($latestOrder->id) ? $latestOrder->id : 0)  + 1, 4, "0", STR_PAD_LEFT),
-            'total' =>  $total,
+            'order_no' => 'order_' . str_pad((isset($latestOrder->id) ? $latestOrder->id : 0) + 1, 4, "0", STR_PAD_LEFT),
+            'total' => $total,
             'order_status' => 'pending',
             'payment_status' => 'pending',
             'created_at' => Carbon::now()
@@ -226,7 +236,8 @@ class HomeController extends Controller
      * @param $id
      * @return mixed
      */
-    public function downloadShopInvoice($id) {
+    public function downloadShopInvoice($id)
+    {
         $order = Order::findOrFail($id);
         $pdf = PDF::loadView('pdfs.invoice', compact('order'));
 
@@ -236,7 +247,8 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function shop(Request $request) {
+    public function shop(Request $request)
+    {
         $cat = $request->get('cat');
         $search = $request->get('q');
         $data['title'] = 'Shop';
@@ -257,7 +269,8 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function aboutUs() {
+    public function aboutUs()
+    {
         $data['title'] = 'About Us';
 
         return view('site.pages.about-us')->with($data);
@@ -266,7 +279,8 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function terms() {
+    public function terms()
+    {
         $data['title'] = 'Terms & Conditions';
 
         return view('site.pages.terms')->with($data);
@@ -275,7 +289,8 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function privacy() {
+    public function privacy()
+    {
         $data['title'] = 'Privacy Policy';
 
         return view('site.pages.privacy')->with($data);
@@ -284,7 +299,8 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function contactUs() {
+    public function contactUs()
+    {
         $data['title'] = 'Contact Us';
         $data['bg'] = asset('site/img/images/tt.jpg');
 
@@ -295,7 +311,8 @@ class HomeController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function sendMessage(Request $request) {
+    public function sendMessage(Request $request)
+    {
         $input = $request->except('_token');
         $input['useer_id'] = Auth::user() ? Auth::id() : NULL;
         Message::create($input);
@@ -311,16 +328,111 @@ class HomeController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function blog($id) {
+    public function blog($id)
+    {
         $data['title'] = 'Blog';
+        $data['blog'] = Blog::findOrFail($id);
 
-        return view('site.pages.blogs.' . $id)->with($data);
+        return view('site.pages.blog')->with($data);
     }
 
-    public function subscribe(Request $request) {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function blogs()
+    {
+        $data['title'] = 'Blogs';
+        $data['blogs'] = Blog::paginate(10);
+
+        return view('site.pages.blogs')->with($data);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function subscribe(Request $request)
+    {
         $input = $request->except('_token');
 
         Subscriber::create($input);
         return redirect()->back();
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function myProfile()
+    {
+        if (!Auth::user()) {
+            return redirect()->route('site.user.login');
+        } else {
+            $data['title'] = 'My Profile';
+            $data['user'] = User::findOrFail(Auth::id());
+            $data['countries'] = Country::all();
+
+            return view('site.pages.my-profile')->with($data);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateUser(Request $request, $id)
+    {
+        $input = $request->except('_token');
+        $user = User::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $image_name = 'user_' . time() . '.' . $extension;
+            $destinantion = public_path() . '/';
+            $image->move($destinantion, $image_name);
+        } else {
+            $image_name = $user->image;
+        }
+
+        $user->name = $input['first_name'] . ' ' . $input['last_name'];
+        $user->country_id = $input['country'];
+        $user->image = $image_name;
+
+        if ($user->save()) {
+            return redirect()->back()->with(['status' => 'success', 'message' => 'Registration Complete. Please check your email address for verification']);
+        } else {
+            return redirect()->back()->with(['status' => 'error', 'message' => 'Something went wrong']);
+        }
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function myOrders() {
+        if (!Auth::user()) {
+            return redirect()->route('site.user.login');
+        } else {
+            $data['title'] = 'My Orders';
+            $user = User::find(Auth::id());
+            $data['orders'] = $user->orders;
+
+            return view('site.pages.my-orders')->with($data);
+        }
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function myTournaments() {
+        if (!Auth::user()) {
+            return redirect()->route('site.user.login');
+        } else {
+            $data['title'] = 'My Tournaments';
+            $user = User::find(Auth::id());
+            $data['tournaments'] = $user->tournaments;
+
+            return view('site.pages.my-tournaments')->with($data);
+        }
     }
 }

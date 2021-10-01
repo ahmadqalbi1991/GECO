@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Models\Order;
+use App\Models\Tournament;
+use App\Models\TournamentOrder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -43,5 +45,12 @@ class User extends Authenticatable
      */
     public function orders() {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tournaments() {
+        return $this->hasMany(TournamentOrder::class);
     }
 }

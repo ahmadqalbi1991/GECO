@@ -17,7 +17,8 @@
                                     <p data-animation="fadeInUp" data-delay=".6s">Find technology or people for digital
                                         projects in public sector and Find an individual specialist develope
                                         researcher.</p>
-                                    <a href="{{ route('site.blog', 1) }}" class="btn btn-style-two" data-animation="fadeInUp" data-delay=".8s">READ
+                                    <a href="{{ route('site.blog', 1) }}" class="btn btn-style-two"
+                                       data-animation="fadeInUp" data-delay=".8s">READ
                                         MORE</a>
                                 </div>
                             </div>
@@ -152,7 +153,7 @@
                         <div class="col-xl-8 col-lg-9">
                             <div class="live-match-wrap">
                                 <img src="{{ asset('site/img/images/live_match_img.jpg') }}" alt="">
-                                <a href="https://www.youtube.com/watch?v=04KPiGmC7Lc" class="popup-video"><img
+                                <a href="{{ site_setting('streaming_url') }}" class="popup-video"><img
                                         src="{{ asset('site/img/icon/video_play_icon.png') }}" alt=""></a>
                             </div>
                         </div>
@@ -264,7 +265,8 @@
                                         </div>
                                         @if($product->inventory)
                                             <div class="product-cart-action">
-                                                <a href="{{ route('site.add-cart', $product->id) }}"><i class="fas fa-shopping-basket"></i></a>
+                                                <a href="{{ route('site.add-cart', $product->id) }}"><i
+                                                        class="fas fa-shopping-basket"></i></a>
                                             </div>
                                         @endif
                                     </div>
@@ -290,64 +292,30 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 col-sm-9">
-                        <div class="blog-post home-four-blog-post mb-50">
-                            <div class="blog-thumb mb-30">
-                                <a href="{{ route('site.blog', 1) }}"><img src="{{ asset('site/img/blog/2.jpg') }}"
-                                                                           alt=""></a>
-                            </div>
-                            <div class="blog-post-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><i class="far fa-calendar-alt"></i>August 28, 2021</li>
-                                    </ul>
+                    @foreach($blogs as $blog)
+                        <div class="col-lg-4 col-md-6 col-sm-9">
+                            <div class="blog-post home-four-blog-post mb-50">
+                                <div class="blog-thumb mb-30">
+                                    <a href="{{ route('site.blog', $blog->id) }}"><img style="height: 200px;"
+                                                                                       src="{{ asset('blogs/' . $blog->image) }}"
+                                                                                       alt=""></a>
                                 </div>
-                                <h4><a href="{{ route('site.blog', 1) }}">Smaller Marvel Game Turned Out Better Than Big Budget Avengers</a></h4>
-                                <p>Marvel Future Revolution is a new mobile action RPG starring Spider-Man and other heroes</p>
-                                <a href="{{ route('site.blog', 1) }}" class="read-more">Read More <i
-                                        class="fas fa-caret-right"></i></a>
+                                <div class="blog-post-content">
+                                    <div class="blog-meta">
+                                        <ul>
+                                            <li>
+                                                <i class="far fa-calendar-alt"></i>{{ \Carbon\Carbon::parse($blog->created_at)->format('d M, Y') }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h4><a href="{{ route('site.blog', $blog->id) }}">{{ $blog->title }}</a></h4>
+                                    <p>{{ \Illuminate\Support\Str::limit($blog->content, 100) }}</p>
+                                    <a href="{{ route('site.blog', $blog->id) }}" class="read-more">Read More <i
+                                            class="fas fa-caret-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-9">
-                        <div class="blog-post home-four-blog-post mb-50">
-                            <div class="blog-thumb mb-30">
-                                <a href="{{ route('site.blog', 2) }}"><img src="{{ asset('site/img/blog/1.jpg') }}"
-                                                                           alt=""></a>
-                            </div>
-                            <div class="blog-post-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><i class="far fa-calendar-alt"></i>August 27, 2021</li>
-                                    </ul>
-                                </div>
-                                <h4><a href="{{ route('site.blog', 2) }}">Epic Disables Disrespectful Fortnite Emotes In The Martin Luther King
-                                        Event</a></h4>
-                                <p>The March Through Time event will only allow things like protest signs</p>
-                                <a href="{{ route('site.blog', 2) }}" class="read-more">Read More <i
-                                        class="fas fa-caret-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-9">
-                        <div class="blog-post home-four-blog-post mb-50">
-                            <div class="blog-thumb mb-30">
-                                <a href="{{ route('site.blog', 3) }}"><img src="{{ asset('site/img/blog/3.jpg') }}"
-                                                                           alt=""></a>
-                            </div>
-                            <div class="blog-post-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><i class="far fa-calendar-alt"></i>August 24, 2021</li>
-                                    </ul>
-                                </div>
-                                <h4><a href="{{ route('site.blog', 3) }}">Here's All The New Elden Ring News Worth Knowing</a></h4>
-                                <p>Plumbing today’s previews for all of FromSoftware’s hot Elden Ring gos</p>
-                                <a href="{{ route('site.blog', 3) }}" class="read-more">Read More <i
-                                        class="fas fa-caret-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

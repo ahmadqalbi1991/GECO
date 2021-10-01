@@ -35,6 +35,8 @@
                                             href="{{ route('site.about') }}">About Us</a></li>
                                     <li class="{{ Request::is('shop') ? 'active' : NULL }}"><a
                                             href="{{ route('site.shop') }}">Shop</a></li>
+                                    <li class="{{ Request::is('blogs') ? 'active' : NULL }}"><a
+                                            href="{{ route('site.blogs') }}">Blogs</a></li>
                                     <li class="{{ Request::is('tournaments') ? 'active' : NULL }}"><a
                                             href="{{ route('site.tournaments') }}">Tournaments</a></li>
                                     <li class="{{ Request::is('contact-us') ? 'active' : NULL }}"><a
@@ -47,8 +49,9 @@
                                     @else
                                         <li><a href="#"><i class="fa fa-cog"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="about-us.html">My profile</a></li>
-                                                <li><a href="upcoming-games.html">My TOurnaments</a></li>
+                                                <li><a href="{{ route('site.my-profile') }}">My profile</a></li>
+                                                <li><a href="{{ route('site.my-orders') }}">My Orders</a></li>
+                                                <li><a href="{{ route('site.my-tournaments') }}">My Tournaments</a></li>
                                                 <li><a href="{{ route('logout') }}">Logout</a></li>
                                             </ul>
                                         </li>

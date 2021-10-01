@@ -33,6 +33,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/games', 'Admin\GameController');
     Route::resource('/tournaments', 'Admin\TournamentController');
     Route::resource('/products', 'Admin\ProductController');
+    Route::resource('/blogs', 'Admin\BlogController');
     Route::get('/messages', [Admin\MessageController::class, 'index'])->name('messages');
     Route::get('/subscribers', [Admin\SubscriberController::class, 'index'])->name('subscribers');
     Route::get('/message-view/{id}', [Admin\MessageController::class, 'view'])->name('message.view');
@@ -91,9 +92,14 @@ Route::name('site.')->group(function () {
     Route::get('/checkout', [Site\HomeController::class, 'checkout'])->name('checkout');
     Route::post('/create-order', [Site\HomeController::class, 'updateShipment'])->name('update-shipment');
     Route::get('/payment-success/{order_number}/{id}', [Site\HomeController::class, 'successCart'])->name('cart-success');
+    Route::get('/games-posts', [Site\HomeController::class, 'blogs'])->name('blogs');
     Route::get('/blog/{id}', [Site\HomeController::class, 'blog'])->name('blog');
     Route::get('/download-shop-invoice/{id}', [Site\HomeController::class, 'downloadShopInvoice'])->name('download-shop-invoice');
     Route::post('/subscribe', [Site\HomeController::class, 'subscribe'])->name('subscribe');
+    Route::get('/my-profile', [Site\HomeController::class, 'myProfile'])->name('my-profile');
+    Route::get('/my-orders', [Site\HomeController::class, 'myOrders'])->name('my-orders');
+    Route::get('/my-tournaments', [Site\HomeController::class, 'myTournaments'])->name('my-tournaments');
+    Route::post('/update-user/{id}', [Site\HomeController::class, 'updateUser'])->name('update-user');
 });
 Route::post('/get-pubg-player', [Site\TournamentController::class, 'getPlayerDetail']);
 
