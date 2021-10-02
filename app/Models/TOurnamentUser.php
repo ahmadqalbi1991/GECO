@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TOurnamentUser extends Model
 {
     protected $table = 'tournament_users';
-    protected $fillable = ['tournament_order_id', 'username'];
+    protected $fillable = ['tournament_order_id', 'username', 'name'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

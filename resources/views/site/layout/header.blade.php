@@ -8,10 +8,12 @@
                     <div class="header-social">
                         <span>Follow us on :</span>
                         <ul>
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="{{ site_setting('facebook_url') }}"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="{{ site_setting('twitter_url') }}"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="{{ site_setting('pinterest_url') }}"><i class="fab fa-pinterest-p"></i></a>
+                            </li>
+                            <li><a href="{{ site_setting('linkedin_url') }}"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="{{ site_setting('youtube_url') }}"><i class="fab fa-youtube"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -33,25 +35,36 @@
                                             href="{{ route('site.home') }}">Home</a></li>
                                     <li class="{{ Request::is('about-us') ? 'active' : NULL }}"><a
                                             href="{{ route('site.about') }}">About Us</a></li>
-                                    <li class="{{ Request::is('shop') ? 'active' : NULL }}"><a
-                                            href="{{ route('site.shop') }}">Shop</a></li>
+                                    @if(!Auth::user() || !Auth::user()->is_admin)
+                                        <li class="{{ Request::is('shop') ? 'active' : NULL }}"><a
+                                                href="{{ route('site.shop') }}">Shop</a></li>
+                                        <li class="{{ Request::is('tournaments') ? 'active' : NULL }}"><a
+                                                href="{{ route('site.tournaments') }}">Tournaments</a></li>
+                                    @elseif(isset(Auth::user()->is_admin) && Auth::user()->is_admin)
+                                        <li><a href="{{ route('admin.login') }}">Dashboard</a></li>
+                                    @endif
                                     <li class="{{ Request::is('blogs') ? 'active' : NULL }}"><a
                                             href="{{ route('site.blogs') }}">Blogs</a></li>
-                                    <li class="{{ Request::is('tournaments') ? 'active' : NULL }}"><a
-                                            href="{{ route('site.tournaments') }}">Tournaments</a></li>
                                     <li class="{{ Request::is('contact-us') ? 'active' : NULL }}"><a
                                             href="{{ route('site.contact') }}">Contact Us</a></li>
                                     @if(!Auth::user())
-                                        <li class="{{ Request::is('login') ? 'active' : NULL }}"><a
-                                                href="{{ route('site.user.login') }}">Login</a></li>
-                                        <li class="{{ Request::is('register') ? 'active' : NULL }}"><a
-                                                href="{{ route('site.user.register') }}">Register</a></li>
+                                        <li><a href="#"><i class="fa fa-cog"></i></a>
+                                            <ul class="submenu">
+                                                <li><a
+                                                        href="{{ route('site.user.login') }}">Login</a></li>
+                                                <li><a
+                                                        href="{{ route('site.user.register') }}">Register</a></li>
+                                            </ul>
+                                        </li>
                                     @else
                                         <li><a href="#"><i class="fa fa-cog"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="{{ route('site.my-profile') }}">My profile</a></li>
-                                                <li><a href="{{ route('site.my-orders') }}">My Orders</a></li>
-                                                <li><a href="{{ route('site.my-tournaments') }}">My Tournaments</a></li>
+                                                @if(isset(Auth::user()->is_admin) && !Auth::user()->is_admin)
+                                                    <li><a href="{{ route('site.my-profile') }}">My profile</a></li>
+                                                    <li><a href="{{ route('site.my-orders') }}">My Orders</a></li>
+                                                    <li><a href="{{ route('site.my-tournaments') }}">My Tournaments</a>
+                                                    </li>
+                                                @endif
                                                 <li><a href="{{ route('logout') }}">Logout</a></li>
                                             </ul>
                                         </li>
@@ -68,35 +81,37 @@
                                                 @php $carts = Session::get('cart'); $total = 0; @endphp
                                                 @foreach($carts as $key => $cart)
                                                     @php $total = $total + ($cart['price'] * $cart['qty']);  @endphp
-                                                <li class="d-flex align-items-start">
-                                                    <div class="cart-img">
-                                                        <a href="#">
-                                                            <img src="{{ asset('products/' . $cart['image']) }}"
-                                                                 alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="cart-content">
-                                                        <h4>
-                                                            <a href="#">{{ $cart['name'] }}</a>
-                                                        </h4>
-                                                        <div class="cart-price">
-                                                            <span class="new">Rs. {{ number_format($cart['price']) }}</span>
+                                                    <li class="d-flex align-items-start">
+                                                        <div class="cart-img">
+                                                            <a href="#">
+                                                                <img src="{{ asset('products/' . $cart['image']) }}"
+                                                                     alt="">
+                                                            </a>
                                                         </div>
-                                                        <div class="cart-price">
-                                                            QTY <span class="new">{{ number_format($cart['qty']) }}</span>
+                                                        <div class="cart-content">
+                                                            <h4>
+                                                                <a href="#">{{ $cart['name'] }}</a>
+                                                            </h4>
+                                                            <div class="cart-price">
+                                                                <span
+                                                                    class="new">$ {{ number_format($cart['price']) }}</span>
+                                                            </div>
+                                                            <div class="cart-price">
+                                                                QTY <span
+                                                                    class="new">{{ number_format($cart['qty']) }}</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="del-icon">
-                                                        <a href="{{ route('site.remove-cart-item', $key) }}">
-                                                            <i class="far fa-trash-alt"></i>
-                                                        </a>
-                                                    </div>
-                                                </li>
+                                                        <div class="del-icon">
+                                                            <a href="{{ route('site.remove-cart-item', $key) }}">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </a>
+                                                        </div>
+                                                    </li>
                                                 @endforeach
                                                 <li>
                                                     <div class="total-price">
                                                         <span class="f-left">Total:</span>
-                                                        <span class="f-right">Rs. {{ number_format($total) }}</span>
+                                                        <span class="f-right">$ {{ number_format($total) }}</span>
                                                     </div>
                                                 </li>
                                                 <li>

@@ -32,7 +32,7 @@
                                         @php $key++ @endphp
                                         <div class="row">
                                             <div class="col-3">
-                                                {{ $user->username }}
+                                                {{ $user->name }} ({{ $user->username }})
                                                 <input type="hidden" id="user_id{{ $key }}" value="{{ $user->id }}">
                                             </div>
                                             <div class="col-4">

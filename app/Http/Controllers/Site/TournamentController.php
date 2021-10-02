@@ -89,11 +89,13 @@ class TournamentController extends Controller
         $order_id = TournamentOrder::insertGetId($order);
         if ($order_id) {
             $users = $input['usernames'];
+            $names = $input['names'];
             $team = TournamentOrder::findOrFail($order_id);
-            foreach ($users as $user) {
+            foreach ($users as $key => $user) {
                 TOurnamentUser::create([
                     'tournament_order_id' => $order_id,
-                    'username' => $user
+                    'username' => $user,
+                    'name' => $names[$key]
                 ]);
             }
 

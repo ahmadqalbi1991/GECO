@@ -5,6 +5,30 @@
         @if(!Session::has('message') && !Session::has('status'))
             <section class="contact-area pt-120 pb-120">
                 <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="md-stepper-horizontal orange">
+                                <div class="md-step active">
+                                    <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                                    <div class="md-step-title">My Cart</div>
+                                    <div class="md-step-bar-left"></div>
+                                    <div class="md-step-bar-right"></div>
+                                </div>
+                                <div class="md-step active">
+                                    <div class="md-step-circle"><span>2</span></div>
+                                    <div class="md-step-title">Checkout</div>
+                                    <div class="md-step-bar-left"></div>
+                                    <div class="md-step-bar-right"></div>
+                                </div>
+                                <div class="md-step">
+                                    <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                                    <div class="md-step-title">Paid</div>
+                                    <div class="md-step-bar-left"></div>
+                                    <div class="md-step-bar-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <form action="{{ route('site.update-shipment') }}" id="shipment_form" method="post">
                         @csrf
                         <input type="hidden" name="order_id" value="{{ $order_id }}">
@@ -85,7 +109,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-4 text-right">
-                                    <button type="submit" class="btn btn-success">Pay</button>
+                                    <button type="submit" class="btn btn-success">Next</button>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-12">
@@ -95,7 +119,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="cart">
-                                            @php $subtotal = 0;  @endphp
+                                            @php $subtotal = 0;
+                                             $shipping_charges = site_setting('shipping_charges');  @endphp
                                             @foreach($cart as $item)
                                                 @php $subtotal = $subtotal + ($item['qty'] * $item['price']);  @endphp
                                                 <div class="row">
@@ -104,7 +129,7 @@
                                                     </div>
                                                     <div class="col-8">
                                                         <h5>{{ $item['name'] }}</h5>
-                                                        <p>Rs. {{ $item['price'] }}</p>
+                                                        <p>$ {{ $item['price'] }}</p>
                                                         <p>Quantity:{{ $item['qty'] }}</p>
                                                         <p>Item Total: {{ $item['qty'] * $item['price'] }}</p>
                                                     </div>
@@ -125,14 +150,14 @@
                                             <h3>Total</h3>
                                             <hr>
                                             <h5>Subtotal <span id="subtotal_text"
-                                                               class="float-right">Rs. {{ $subtotal }}</span>
+                                                               class="float-right">$ {{ $subtotal }}</span>
                                             </h5>
                                             <h5>Delivery Charges <span id="subtotal_text"
-                                                                       class="float-right">Free</span>
+                                                                       class="float-right">$ {{ $shipping_charges }}</span>
                                             </h5>
                                             <hr>
                                             <h5>Total <span
-                                                    class="float-right" id="cart-total">Rs. {{ $subtotal }}</span>
+                                                    class="float-right" id="cart-total">$ {{ $subtotal + $shipping_charges }}</span>
                                             </h5>
                                         </div>
                                     </div>
@@ -159,7 +184,7 @@
     </main>
 
     <script
-        src="https://www.paypal.com/sdk/js?client-id={{ site_setting('paypal_secret') }}"> // Required. Replace YOUR_CLIENT_ID with your sandbox
+        src="https://www.paypal.com/sdk/js?client-id={{ site_setting('paypal_password') }}"> // Required. Replace YOUR_CLIENT_ID with your sandbox
         // client ID.
     </script>
     <script>

@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="slider-img"><img src="{{ asset('site/img/slider/four_slider_img01.png') }}" alt=""
+                        <div class="slider-img"><img src="{{ asset('site/img/c1.png') }}" alt=""
                                                      data-animation="slideInRightS" data-delay=".8s"></div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="slider-img"><img src="{{ asset('site/img/slider/four_slider_img02.png') }}" alt=""
+                        <div class="slider-img"><img src="{{ asset('site/img/c2.png') }}" alt=""
                                                      data-animation="slideInRightS" data-delay=".8s"></div>
                     </div>
                 </div>
@@ -115,17 +115,17 @@
                                 @foreach($tournaments as $tournament)
                                     <div class="latest-games-items mb-30">
                                         <div class="latest-games-thumb">
-                                            <a href="#"><img
+                                            <a href="{{ route('site.tournament.detail', $tournament->id) }}"><img
                                                     src="{{ asset('games/tournaments/' . $tournament->image) }}" alt=""></a>
                                         </div>
                                         <div class="latest-games-content">
                                             <div class="lg-tag">
-                                                <a href="#">{{ $tournament->game->game_type }}</a>
+                                                <a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_type }}</a>
                                             </div>
-                                            <h4><a href="#">{{ $tournament->game->game_name }}
-                                                    <span>{{ $tournament->game->game_name }}</span></a></h4>
+                                            <h4><a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_name }}
+                                                    <span>{{ $tournament->tournament_title }}</span></a></h4>
                                             <p>entry fee :
-                                                <span>Rs. {{ $tournament->price ? $tournament->price : 'free' }}</span>
+                                                <span>$ {{ $tournament->price ? $tournament->price : 'free' }}</span>
                                             </p>
                                             <p>@if(\Carbon\Carbon::parse($tournament->tournament_start_date)->format('Y-m-d') >= \Carbon\Carbon::now
                                             ()->format('Y-m-d')) Open @else Ended @endif</p>
@@ -171,17 +171,17 @@
                                 @foreach($upcoming_tournaments as $tournament)
                                     <div class="latest-games-items mb-30">
                                         <div class="latest-games-thumb">
-                                            <a href="#"><img
+                                            <a href="{{ route('site.tournament.detail', $tournament->id) }}"><img
                                                     src="{{ asset('games/tournaments/' . $tournament->image) }}" alt=""></a>
                                         </div>
                                         <div class="latest-games-content">
                                             <div class="lg-tag">
-                                                <a href="#">{{ $tournament->game->game_type }}</a>
+                                                <a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_type }}</a>
                                             </div>
-                                            <h4><a href="#">{{ $tournament->game->game_name }}
-                                                    <span>{{ $tournament->game->game_name }}</span></a></h4>
+                                            <h4><a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_name }}
+                                                    <span>{{ $tournament->tournament_title }}</span></a></h4>
                                             <p>entry fee :
-                                                <span>Rs. {{ $tournament->price ? $tournament->price : 'free' }}</span>
+                                                <span>$ {{ $tournament->price ? $tournament->price : 'free' }}</span>
                                             </p>
                                         </div>
                                     </div>
@@ -259,7 +259,7 @@
                                     <h4><a href="#">{{ $product->product_name }}</a></h4>
                                     <div class="product-meta">
                                         <div class="product-price">
-                                            <h5>Rs. {{ number_format($product->price) }}</h5>
+                                            <h5>$ {{ number_format($product->price) }}</h5>
                                             <span class="invnetory-note">{{ $product->inventory ? 'Available: ' . $product->inventory : 'OUT OF
                                             STOCK' }}</span>
                                         </div>

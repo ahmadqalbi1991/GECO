@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="../pages/dashboard.html">
+                <a class="nav-link {{ (Request::is('admin/dashboard') ? 'active' : '') }}" href="{{ route('admin.dashboard') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>shop </title>
@@ -80,7 +80,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ (Request::is('admin/leaderboard') ? 'active' : '') }}" href="{{ route('admin.leaderboard') }}">
+                <a class="nav-link {{ (Request::is('admin/leader-board') ? 'active' : '') }}" href="{{ route('admin.leaderboard') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="icons">
                                 <i class="fas fa-star"></i>
@@ -120,7 +120,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ (Request::is('admin/setting') ? 'active' : '') }}" href="{{ route('admin.setting.show', 1)
+                <a class="nav-link {{ (Request::is('admin/setting/1') ? 'active' : '') }}" href="{{ route('admin.setting.show', site_setting('id'))
                 }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <span class="icons">

@@ -5,6 +5,30 @@
         <section class="contact-area pt-120 pb-120">
             <div class="container">
                 <div class="row">
+                    <div class="col-12">
+                        <div class="md-stepper-horizontal orange">
+                            <div class="md-step active">
+                                <div class="md-step-circle"><span>1</span></div>
+                                <div class="md-step-title">My Cart</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step">
+                                <div class="md-step-circle"><span>2</span></div>
+                                <div class="md-step-title">Checkout</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step">
+                                <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                                <div class="md-step-title">Paid</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-8 col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -33,13 +57,13 @@
                                                             <div
                                                                 class="col-5 d-flex align-items-start justify-content-center flex-column flex-wrap">
                                                                 <h5>{{ $item['name'] }}</h5>
-                                                                <p>Rs. {{ $item['price'] }}</p>
+                                                                <p>$ {{ $item['price'] }}</p>
                                                                 <input type="hidden" id="price{{ $i }}"
                                                                        value="{{ $item['price'] }}">
                                                                 <input type="hidden" id="price_total{{ $i }}"
                                                                        class="prices" value="{{ $item['price'] }}">
                                                                 <span class="item-total"
-                                                                      id="item-total{{ $i }}">Rs. {{ $item['price'] * $item['qty'] }}</span>
+                                                                      id="item-total{{ $i }}">$ {{ $item['price'] * $item['qty'] }}</span>
                                                             </div>
                                                             <div
                                                                 class="col-3 d-flex align-items-start justify-content-center flex-column flex-wrap">
@@ -89,12 +113,12 @@
                                 <div class="cart-total">
                                     <h3>Total</h3>
                                     <hr>
-                                    <h5>Subtotal <span id="subtotal_text" class="float-right">Rs. {{ $subtotal }}</span>
+                                    <h5>Subtotal <span id="subtotal_text" class="float-right">$ {{ $subtotal }}</span>
                                     </h5>
                                     <input type="hidden" id="subtotal" value="{{ $subtotal }}">
                                     <hr>
                                     <h5>Total <span
-                                            class="float-right" id="cart-total">Rs. {{ $subtotal }}</span>
+                                            class="float-right" id="cart-total">$ {{ $subtotal }}</span>
                                     </h5>
                                 </div>
                             </div>
@@ -132,7 +156,7 @@
             qty = qty + 1;
             price = price * qty;
             document.getElementById('qty' + i).value = qty;
-            document.getElementById('item-total' + i).innerText = 'Rs. ' + price;
+            document.getElementById('item-total' + i).innerText = '$ ' + price;
             document.getElementById('price_total' + i).value = price;
             calculateSubtotal();
         }
@@ -144,8 +168,8 @@
                 subtotal = subtotal + parseInt(prices.item(i).value);
             }
 
-            document.getElementById('subtotal_text').innerText = 'Rs. ' + subtotal;
-            document.getElementById('cart-total').innerText = 'Rs. ' + (subtotal)
+            document.getElementById('subtotal_text').innerText = '$ ' + subtotal;
+            document.getElementById('cart-total').innerText = '$ ' + (subtotal)
         }
     </script>
 @endsection

@@ -94,7 +94,7 @@ function mainSlider() {
 		doAnimations($animatingElements);
 	});
 	BasicSlider.slick({
-		autoplay: false,
+		autoplay: true,
 		autoplaySpeed: 10000,
 		dots: false,
 		fade: true,

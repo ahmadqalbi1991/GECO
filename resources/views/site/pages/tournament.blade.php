@@ -7,6 +7,40 @@
 
         <section class="upcoming-games-area contact-area upcoming-games-bg pt-120 pb-80">
             <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="md-stepper-horizontal orange">
+                            <div class="md-step active done">
+                                <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                                <div class="md-step-title">Tournaments</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step active">
+                                <div class="md-step-circle"><span>2</span></div>
+                                <div class="md-step-title">Tournament</div>
+                                <div class="md-step-optional">Detail</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step">
+                                <div class="md-step-circle"><span>3</span></div>
+                                <div class="md-step-title">Tournament</div>
+                                <div class="md-step-optional">Registration</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step">
+                                <div class="md-step-circle"><span>4</span></div>
+                                <div class="md-step-title">Tournament</div>
+                                <div class="md-step-optional">Joined</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-header">
                         <div class="section-title title-style-three mb-20">

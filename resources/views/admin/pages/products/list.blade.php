@@ -47,7 +47,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">Rs.{{ $product->price }}</td>
+                                                <td class="align-middle text-center text-sm">${{ $product->price }}</td>
                                                 <td class="align-middle text-center text-sm">{{ $product->sku_code }}</td>
                                                 <td class="align-middle text-center text-sm">{{ $product->inventory }}</td>
                                                 <td class="align-middle text-center text-sm">

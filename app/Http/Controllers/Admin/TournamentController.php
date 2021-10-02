@@ -95,7 +95,7 @@ class TournamentController extends Controller
         $input['image'] = $image_name;
         $result = Tournament::firstOrCreate($input);
         if ($result) {
-            return redirect()->route('admin.games.index')->with(['status' => 'success', 'message' => 'Tournament added successfully']);
+            return redirect()->route('admin.tournaments.index')->with(['status' => 'success', 'message' => 'Tournament added successfully']);
         } else {
             return redirect()->back()->withErrors(['status' => 'error', 'message' => 'Something went wrong']);
         }

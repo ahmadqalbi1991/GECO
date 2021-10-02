@@ -129,7 +129,7 @@
         <tr>
             <td>
                 <div class="header-logo">
-                    <img src="{{ asset('site/img/logo/logo.png') }}" alt="">
+
                 </div>
             </td>
             <td>

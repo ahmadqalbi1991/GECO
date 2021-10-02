@@ -6,6 +6,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
+                        <div class="md-stepper-horizontal orange">
+                            <div class="md-step active">
+                                <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                                <div class="md-step-title">My Cart</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step active">
+                                <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                                <div class="md-step-title">Checkout</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step active">
+                                <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                                <div class="md-step-title">Paid</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
                         <div class="registration-success">
                             <h2>Thank you for shopping.</h2>
                             <h4>Your order has been placed against order number #{{ $order_number }}, You will receive

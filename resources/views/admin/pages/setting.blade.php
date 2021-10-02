@@ -139,6 +139,18 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="shipping_charges" class="control-label">Shipping Charges</label>
+                                            <input type="number" placeholder="" name="shipping_charges"
+                                                   id="shipping_charges"
+                                                   class="form-control @error('shipping_charges') is-invalid @enderror"
+                                                   value="{{ $setting->shipping_charges }}">
+                                            @error('shipping_charges')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">

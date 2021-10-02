@@ -8,6 +8,46 @@
         <section class="upcoming-games-area upcoming-games-bg pt-120 pb-80">
             <div class="container">
                 <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="md-stepper-horizontal orange">
+                                    <div class="md-step active">
+                                        <div class="md-step-circle"><span>1</span></div>
+                                        <div class="md-step-title">Tournaments</div>
+                                        <div class="md-step-bar-left"></div>
+                                        <div class="md-step-bar-right"></div>
+                                    </div>
+                                    <div class="md-step">
+                                        <div class="md-step-circle"><span>2</span></div>
+                                        <div class="md-step-title">Tournament</div>
+                                        <div class="md-step-optional">Detail</div>
+                                        <div class="md-step-bar-left"></div>
+                                        <div class="md-step-bar-right"></div>
+                                    </div>
+                                    <div class="md-step">
+                                        <div class="md-step-circle"><span>3</span></div>
+                                        <div class="md-step-title">Tournament</div>
+                                        <div class="md-step-optional">Registration</div>
+                                        <div class="md-step-bar-left"></div>
+                                        <div class="md-step-bar-right"></div>
+                                    </div>
+                                    <div class="md-step">
+                                        <div class="md-step-circle"><span>4</span></div>
+                                        <div class="md-step-title">Tournament</div>
+                                        <div class="md-step-optional">Joined</div>
+                                        <div class="md-step-bar-left"></div>
+                                        <div class="md-step-bar-right"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
                     @if(count($tournaments))
                         @foreach($tournaments as $tournament)
                             <div class="col-lg-4 col-md-6">
@@ -30,7 +70,8 @@
                                     <div class="upcoming-game-thumb">
                                         <img src="{{ asset('games/tournaments/' . $tournament->image) }}" alt="">
                                         <div class="upcoming-game-cart">
-                                            <a href="{{ route('site.tournament.detail', $tournament->id) }}" class="btn transparent-btn"><i class="fas fa-sign-in-alt"></i>Participate</a>
+                                            <a href="{{ route('site.tournament.detail', $tournament->id) }}"
+                                               class="btn transparent-btn"><i class="fas fa-sign-in-alt"></i>Participate</a>
                                         </div>
                                     </div>
                                 </div>
