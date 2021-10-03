@@ -47,7 +47,7 @@ class TournamentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -104,7 +104,7 @@ class TournamentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -123,7 +123,7 @@ class TournamentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -141,8 +141,8 @@ class TournamentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -202,7 +202,7 @@ class TournamentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -215,9 +215,11 @@ class TournamentController extends Controller
         }
     }
 
-    public function leaderboard() {
+    public function leaderboard(Request $request)
+    {
+        $id = $request->get('tournament_id', NULL);
         $data['title'] = 'Leaderboard';
-        $teams = TournamentOrder::all();
+        $teams = TournamentOrder::where('tournament_id', $id)->get();
         $ranks = $teams->unique('points')
             ->values()
             ->mapWithKeys(function ($item, $index) {
@@ -225,6 +227,8 @@ class TournamentController extends Controller
             });
         $data['teams'] = $teams;
         $data['ranks'] = $ranks;
+        $data['tournaments'] = Tournament::all();
+        $data['id'] = $id;
 
         return view('admin.pages.leaderboard')->with($data);
     }

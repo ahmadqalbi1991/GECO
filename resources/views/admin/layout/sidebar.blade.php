@@ -127,7 +127,7 @@
                                 <i class="fas fa-cog"></i>
                             </span>
                     </div>
-                    <span class="nav-link-text ms-1">Setting</span>
+                    <span class="nav-link-text ms-1">Settings</span>
                 </a>
             </li>
         </ul>

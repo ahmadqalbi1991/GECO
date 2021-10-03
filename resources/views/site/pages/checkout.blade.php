@@ -93,23 +93,20 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-{{--                                                    <label>Payment Method</label><br>--}}
-{{--                                                    <label for="cod">--}}
-{{--                                                        <input type="radio" name="payment_method" id="cod" value="cod">--}}
-{{--                                                        Cash on delivery--}}
-{{--                                                    </label>--}}
                                                     <div id="paypal-button-container"></div>
-
-                                                    @error('payment_method')
-                                                    <span class="error">{{ $message }}</span>
-                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="comment_section">Extra</label>
+                                                    <textarea name="comment_section" id="comment_section"
+                                                              rows="5" class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mt-4 text-right">
-                                    <button type="submit" class="btn btn-success">Next</button>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-12">
@@ -122,7 +119,11 @@
                                             @php $subtotal = 0;
                                              $shipping_charges = site_setting('shipping_charges');  @endphp
                                             @foreach($cart as $item)
-                                                @php $subtotal = $subtotal + ($item['qty'] * $item['price']);  @endphp
+                                                @php
+                                                    $discount = $item['price'] * ($item['discount'] / 100);
+                                                    $item_price = $item['price'] - $discount;
+                                                    $subtotal = $subtotal + ($item_price * $item['qty']);
+                                                @endphp
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <img src="{{ asset('products/' . $item['image']) }}" alt="">
@@ -131,7 +132,7 @@
                                                         <h5>{{ $item['name'] }}</h5>
                                                         <p>$ {{ $item['price'] }}</p>
                                                         <p>Quantity:{{ $item['qty'] }}</p>
-                                                        <p>Item Total: {{ $item['qty'] * $item['price'] }}</p>
+                                                        <p>Item Total: $ {{ $item['qty'] * $item_price }}</p>
                                                     </div>
                                                 </div>
                                                 @if(count($cart) > 1)
@@ -167,19 +168,6 @@
                     </form>
                 </div>
             </section>
-        @else
-            <section class="regiration-sucess pt-120 pb-80">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="registration-success">
-                                <h2>Thank you for shopping.</h2>
-                                <h4>Your order has been placed against order number {{ $order_number }}, You will receive your item(s) in 24 hours.</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         @endif
     </main>
 
@@ -194,7 +182,7 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '{{ $subtotal }}'
+                            value: '{{ $subtotal + $shipping_charges }}'
                         }
                     }]
                 });

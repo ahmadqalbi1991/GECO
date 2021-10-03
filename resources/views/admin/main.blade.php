@@ -9,8 +9,6 @@
 
     @yield('content')
 
-    @include('admin.layout.footer')
-
     @include('admin.layout.scripts')
 </body>
 

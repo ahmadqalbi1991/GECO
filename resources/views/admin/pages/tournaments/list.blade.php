@@ -27,6 +27,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tournament Date</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tournament Start Time</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Allowed</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Streaming Status</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
@@ -59,6 +60,9 @@
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <p class="text-xs text-secondary mb-0">{{ ucwords($tournament->tournament_type) }}</p>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.leaderboard') }}?tournament_id={{ $tournament->id }}">Leaderboard <i class="fas fa-chevron-right"></i></a>
                                                 </td>
 
                                                 <td class="align-middle text-center text-sm">

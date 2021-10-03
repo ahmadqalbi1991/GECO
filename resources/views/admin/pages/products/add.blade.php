@@ -54,14 +54,29 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="price" class="control-label">Price</label>
-                                            <input placeholder="Please enter price" name="price" type="number"
-                                                   min="0"
-                                                   class="form-control @error('price') is-invalid @enderror">
-                                            @error('price')
-                                            <span class="error">{{ $message }}</span>
-                                            @enderror
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="price" class="control-label">Price</label>
+                                                    <input placeholder="Price" name="price" type="number"
+                                                           min="0"
+                                                           class="form-control @error('price') is-invalid @enderror">
+                                                    @error('price')
+                                                    <span class="error">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="discount" class="control-label">Discount</label>
+                                                    <input placeholder="Discount" name="discount" type="number"
+                                                           min="0"
+                                                           class="form-control @error('discount') is-invalid @enderror">
+                                                    @error('discount')
+                                                    <span class="error">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-12">

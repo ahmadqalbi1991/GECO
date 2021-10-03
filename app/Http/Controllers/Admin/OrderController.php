@@ -22,6 +22,10 @@ class OrderController extends Controller
         return view('admin.pages.orders.list')->with($data);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeStatus(Request $request)
     {
         $input = $request->all();
@@ -33,5 +37,12 @@ class OrderController extends Controller
         } else {
             return redirect()->back()->withErrors(['status' => 'error', 'message' => 'Something went wrong']);
         }
+    }
+
+    public function view($id) {
+        $order = Order::findOrFail($id);
+        $data['order'] = $order;
+        $data['title'] = 'Order View';
+        return view('admin.pages.orders.view')->with($data);
     }
 }

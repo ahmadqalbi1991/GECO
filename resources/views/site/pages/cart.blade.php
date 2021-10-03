@@ -45,7 +45,9 @@
                                                     @foreach($cart as $key => $item)
                                                         @php
                                                             $i++;
-                                                             $subtotal = $subtotal + ($item['price'] * $item['qty']);
+                                                            $discount = $item['price'] * ($item['discount'] / 100);
+                                                            $item_price = $item['price'] - $discount;
+                                                            $subtotal = $subtotal + ($item_price * $item['qty']);
                                                         @endphp
                                                         <div class="row my-2">
                                                             <div
@@ -57,13 +59,16 @@
                                                             <div
                                                                 class="col-5 d-flex align-items-start justify-content-center flex-column flex-wrap">
                                                                 <h5>{{ $item['name'] }}</h5>
-                                                                <p>$ {{ $item['price'] }}</p>
+                                                                <p>Price: $ {{ $item['price'] }}</p>
                                                                 <input type="hidden" id="price{{ $i }}"
-                                                                       value="{{ $item['price'] }}">
+                                                                       value="{{ $item_price }}">
                                                                 <input type="hidden" id="price_total{{ $i }}"
-                                                                       class="prices" value="{{ $item['price'] }}">
+                                                                       class="prices" value="{{ $item_price }}">
+                                                                @if($item['discount'])
+                                                                    <span>Discount: $ {{ $discount }}</span>
+                                                                @endif
                                                                 <span class="item-total"
-                                                                      id="item-total{{ $i }}">$ {{ $item['price'] * $item['qty'] }}</span>
+                                                                      id="item-total{{ $i }}">Item subtotal: $ {{ $item_price * $item['qty'] }}</span>
                                                             </div>
                                                             <div
                                                                 class="col-3 d-flex align-items-start justify-content-center flex-column flex-wrap">
@@ -145,7 +150,7 @@
             qty = qty - 1;
             price = price * qty;
             document.getElementById('qty' + i).value = qty;
-            document.getElementById('item-total' + i).innerText = 'Rs ' + price;
+            document.getElementById('item-total' + i).innerText = 'Item subtotal: $ ' + price;
             document.getElementById('price_total' + i).value = price;
             calculateSubtotal();
         }
@@ -156,7 +161,7 @@
             qty = qty + 1;
             price = price * qty;
             document.getElementById('qty' + i).value = qty;
-            document.getElementById('item-total' + i).innerText = '$ ' + price;
+            document.getElementById('item-total' + i).innerText = 'Item subtotal: $ ' + price;
             document.getElementById('price_total' + i).value = price;
             calculateSubtotal();
         }

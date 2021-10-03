@@ -117,7 +117,7 @@
                                                 <li>
                                                     <div class="checkout-link">
                                                         <a href="{{ route('site.cart') }}">View Cart</a>
-                                                        <a class="red-color" href="checkout.html">Checkout</a>
+                                                        <a class="red-color" href="{{ route('site.cart') }}">Checkout</a>
                                                     </div>
                                                 </li>
                                             @else

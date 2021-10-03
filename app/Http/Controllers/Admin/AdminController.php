@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -49,6 +50,18 @@ class AdminController extends Controller
         }
 
         $data['sales'] = '[' . implode(',', $sales) . ']';
+//        $no_of_days =Carbon::now()->daysInMonth;
+//        $dates = [];
+//        $i = 0;
+//        for($month = 1; $month <= $no_of_days; $month++) {
+//            $date = Carbon::createFromDate(Carbon::now()->format('Y'), Carbon::now()->format('m'), $month);
+//            $dates[$i] = "'" . $date->format("d M, Y") . "'";
+//            $i++;
+//        }
+//
+//        $data['dates'] = '[' . htmlspecialchars_decode(implode(',', $dates)) . ']';
+//
+//        var_dump($data['dates']);
 
         return view('admin.pages.dashboard')->with($data);
     }

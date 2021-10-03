@@ -27,9 +27,8 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Order Date</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment
-                                            Status
-                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment Status</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -75,6 +74,9 @@
                                                     @else
                                                         <button class="btn btn-sm btn-warning">Pending</button>
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.orders.view', $order->id) }}" class="badge btn-primary"><i class="fas fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

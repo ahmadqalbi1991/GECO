@@ -87,7 +87,6 @@
                                                     {{ \Carbon\Carbon::parse($blog->created_at)->format('d M, Y') }}
                                                 </td>
                                                 <td class="d-flex">
-                                                    <a href="#" class="badge btn-primary"><i class="fas fa-eye"></i></a>
                                                     <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="badge btn-info"><i class="fas fa-pen"></i></a>
                                                     <form action="{{ route('admin.blogs.destroy', $blog->id) }}"
                                                           method="post">

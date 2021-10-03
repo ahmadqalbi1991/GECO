@@ -42,6 +42,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/reply', [Admin\MessageController::class, 'sendMessage'])->name('send.message');
     Route::resource('/setting', 'Admin\SettingController');
     Route::get('/orders', [Admin\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/order/view/{id}', [Admin\OrderController::class, 'view'])->name('orders.view');
     Route::post('/change-order-status', [Admin\OrderController::class, 'changeStatus'])->name('order-change-status');
     Route::name('team.')->group(function () {
         Route::get('/teams', [Admin\TeamController::class, 'index'])->name('index');
@@ -52,6 +53,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/send-users/{id}', [Admin\TeamController::class, 'sendUsersEmail'])->name('send-users-email');
     });
     Route::get('/leader-board', [Admin\TournamentController::class, 'leaderboard'])->name('leaderboard');
+    Route::get('/leader-board/{id}', [Admin\TournamentController::class, 'leaderboard'])->name('leader-board');
 });
 
 /*

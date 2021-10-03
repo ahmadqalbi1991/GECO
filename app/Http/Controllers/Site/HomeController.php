@@ -67,6 +67,7 @@ class HomeController extends Controller
             'description' => $product['description'],
             'price' => $product['price'],
             'image' => $product['image'],
+            'discount' => $product['discount'],
             'qty' => 1,
             'id' => $product['id']
         ];
@@ -147,7 +148,9 @@ class HomeController extends Controller
         $latestOrder = Order::orderBy('created_at', 'DESC')->first();
         $total = 0;
         foreach ($cart as $item) {
-            $total = $total + ($item['qty'] * $item['price']);
+            $discount = $item['price'] * ($item['discount'] / 100);
+            $item_total = $item['price'] - $discount;
+            $total = $total + ($item['qty'] * $item_total);
         }
 
         $order = [
@@ -162,11 +165,13 @@ class HomeController extends Controller
         $order_id = Order::insertGetId($order);
         if ($order_id) {
             foreach ($cart as $item) {
+                $discount = $item['price'] * ($item['discount'] / 100);
+                $item_total = $item['qty'] * ($item['price'] - $discount);
                 $item_array = [
                     'order_id' => $order_id,
                     'product_id' => $item['id'],
                     'qty' => $item['qty'],
-                    'price' => $item['price']
+                    'price' => $item_total
                 ];
 
                 OrderItem::insert($item_array);
