@@ -79,7 +79,7 @@
                             },
                             ticks: {
                                 suggestedMin: 0,
-                                suggestedMax: 500,
+                                // suggestedMax: 500,
                                 beginAtZero: true,
                                 padding: 10,
                                 fontSize: 11,
