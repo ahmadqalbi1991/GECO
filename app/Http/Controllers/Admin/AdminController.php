@@ -50,18 +50,19 @@ class AdminController extends Controller
         }
 
         $data['sales'] = '[' . implode(',', $sales) . ']';
-//        $no_of_days =Carbon::now()->daysInMonth;
-//        $dates = [];
-//        $i = 0;
-//        for($month = 1; $month <= $no_of_days; $month++) {
-//            $date = Carbon::createFromDate(Carbon::now()->format('Y'), Carbon::now()->format('m'), $month);
-//            $dates[$i] = "'" . $date->format("d M, Y") . "'";
-//            $i++;
-//        }
-//
-//        $data['dates'] = '[' . htmlspecialchars_decode(implode(',', $dates)) . ']';
-//
-//        var_dump($data['dates']);
+        $no_of_days =Carbon::now()->daysInMonth;
+        $dates = $monthly_sales = [];
+        $i = 0;
+        for($day = 1; $day <= $no_of_days; $day++) {
+            $date = Carbon::createFromDate(Carbon::now()->format('Y'), Carbon::now()->format('m'), $day);
+            $dates[$i] = $date->format("d");
+            $sale = Order::where('order_time', '=', $date->format('Y-m-d'))->sum('total');;
+            $monthly_sales[$i] = $sale;
+            $i++;
+        }
+
+        $data['dates'] = implode(',', $dates);
+        $data['monthly_sales'] = '[' . implode(',', $monthly_sales) . ']';
 
         return view('admin.pages.dashboard')->with($data);
     }
