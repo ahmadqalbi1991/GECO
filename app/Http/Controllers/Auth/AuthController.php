@@ -132,4 +132,34 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->back();
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function forgetPassword() {
+        $data['title'] = 'Forget Password';
+        return view('site.pages.forget-password')->with($data);
+    }
+
+    public function updatePassword(Request $request) {
+        $validation = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if ($validation->fails()) {
+            return redirect()->back()->withErrors($validation);
+        }
+
+        $input = $request->except(['_token', 'confirm_password']);
+        $input['password'] = bcrypt($input['password']);
+
+        $result = User::where('email', $input['email'])->update($input);
+        if ($result) {
+            return redirect()->route('login');
+        } else {
+            return redirect()->back();
+        }
+    }
 }

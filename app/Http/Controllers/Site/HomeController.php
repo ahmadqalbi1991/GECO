@@ -12,6 +12,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Subscriber;
 use App\Models\Tournament;
+use App\Models\TournamentOrder;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -347,7 +348,7 @@ class HomeController extends Controller
     public function blogs()
     {
         $data['title'] = 'Blogs';
-        $data['blogs'] = Blog::paginate(10);
+        $data['blogs'] = Blog::where('is_active', 1)->paginate(10);
 
         return view('site.pages.blogs')->with($data);
     }
@@ -439,5 +440,26 @@ class HomeController extends Controller
 
             return view('site.pages.my-tournaments')->with($data);
         }
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function product($id) {
+        $data['title'] = 'Product';
+        $data['product'] = Product::findOrFail($id);
+
+        return view('site.pages.product')->with($data);
+    }
+
+
+    public function leaderboard($id)
+    {
+        $data['title'] = 'Leaderboard';
+        $teams = TournamentOrder::where('tournament_id', $id)->orderBy('points', 'desc')->get();
+        $data['teams'] = $teams;
+
+        return view('site.pages.leaderboard')->with($data);
     }
 }

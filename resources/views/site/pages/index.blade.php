@@ -122,7 +122,8 @@
                                             <div class="lg-tag">
                                                 <a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_type }}</a>
                                             </div>
-                                            <h4><a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_name }}
+                                            <h4>
+                                                <a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_name }}
                                                     <span>{{ $tournament->tournament_title }}</span></a></h4>
                                             <p>entry fee :
                                                 <span>$ {{ $tournament->price ? $tournament->price : 'free' }}</span>
@@ -178,7 +179,8 @@
                                             <div class="lg-tag">
                                                 <a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_type }}</a>
                                             </div>
-                                            <h4><a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_name }}
+                                            <h4>
+                                                <a href="{{ route('site.tournament.detail', $tournament->id) }}">{{ $tournament->game->game_name }}
                                                     <span>{{ $tournament->tournament_title }}</span></a></h4>
                                             <p>entry fee :
                                                 <span>$ {{ $tournament->price ? $tournament->price : 'free' }}</span>
@@ -252,14 +254,30 @@
                         <div class="col-xl-3">
                             <div class="shop-item">
                                 <div class="product-thumb">
-                                    <a href="#"><img src="{{ asset('products/' . $product->image) }}" alt=""></a>
+                                    <a href="{{ route('site.product', $product->id) }}"><img
+                                            src="{{ asset('products/' . $product->image) }}" alt=""></a>
                                 </div>
                                 <div class="product-content">
-                                    <div class="product-tag"><a href="#">{{ $product->category }}</a></div>
-                                    <h4><a href="#">{{ $product->product_name }}</a></h4>
+                                    <div class="product-tag"><a
+                                            href="{{ route('site.product', $product->id) }}">{{ $product->category }}</a>
+                                    </div>
+                                    <h4>
+                                        <a href="{{ route('site.product', $product->id) }}">{{ $product->product_name }}</a>
+                                    </h4>
                                     <div class="product-meta">
                                         <div class="product-price">
-                                            <h5>$ {{ number_format($product->price) }}</h5>
+                                            @if($product->discount)
+                                                @php
+                                                    $discount = ($product->price * $product->discount) / 100;
+                                                    $price = $product->price - $discount;
+                                                @endphp
+                                            <h5>
+                                                <del class="text-danger">${{ $product->price }}</del>
+                                                <span class="text-primary">${{ $price }}</span>
+                                            </h5>
+                                            @else
+                                                <span class="text-primary">${{ $product->price }}</span>
+                                            @endif
                                             <span class="invnetory-note">{{ $product->inventory ? 'Available: ' . $product->inventory : 'OUT OF
                                             STOCK' }}</span>
                                         </div>

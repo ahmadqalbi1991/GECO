@@ -52,7 +52,7 @@
                                     </thead>
                                     <tbody>
                                     @if(isset($teams) && count($teams))
-                                        @foreach($teams as $team)
+                                        @foreach($teams as $key => $team)
                                             <tr>
                                                 <td>{{ $team->team_title }}</td>
                                                 <td>
@@ -63,7 +63,7 @@
                                                 <td class="text-center">{{ $team->points }}</td>
                                                 <td class="text-center">{{ strtoupper(str_replace('_', ' ', $team->team_status)) }}</td>
                                                 <td class="text-center">
-                                                    {{ $ranks[$team->points] }}
+                                                    {{ $key + 1 }}
                                                 </td>
                                             </tr>
                                         @endforeach

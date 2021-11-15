@@ -43,7 +43,6 @@
                                                 <option value="console">Console</option>
                                                 <option value="headphones">Headphones</option>
                                                 <option value="gamepad">Gamepad</option>
-                                                <option value="controllers">Controllers</option>
                                                 <option value="games">Games</option>
                                             </select>
                                             @error('category')
@@ -60,6 +59,7 @@
                                                     <label for="price" class="control-label">Price</label>
                                                     <input placeholder="Price" name="price" type="number"
                                                            min="0"
+                                                           step="0.01"
                                                            class="form-control @error('price') is-invalid @enderror">
                                                     @error('price')
                                                     <span class="error">{{ $message }}</span>
@@ -71,6 +71,7 @@
                                                     <label for="discount" class="control-label">Discount</label>
                                                     <input placeholder="Discount" name="discount" type="number"
                                                            min="0"
+                                                           step="0.01"
                                                            class="form-control @error('discount') is-invalid @enderror">
                                                     @error('discount')
                                                     <span class="error">{{ $message }}</span>

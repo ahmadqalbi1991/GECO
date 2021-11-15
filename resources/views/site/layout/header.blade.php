@@ -27,7 +27,7 @@
                     <div class="main-menu menu-style-two">
                         <nav>
                             <div class="logo">
-                                <a href="index-4.html"><img src="{{ asset('site/img/logo/logo_two.png') }}" alt="Logo"></a>
+                                <a href="{{ route('site.home') }}"><img src="{{ asset('site/img/logo/logo_two.png') }}" alt="Logo"></a>
                             </div>
                             <div id="mobile-menu" class="navbar-wrap d-none d-lg-flex">
                                 <ul>

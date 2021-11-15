@@ -13,11 +13,20 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="accessories-item text-center mb-80">
                                     <div class="accessories-thumb mb-30">
-                                        <a href="#"><img src="{{ asset('products/' . $product->image) }}" alt=""></a>
+                                        <a href="{{ route('site.product', $product->id) }}"><img src="{{ asset('products/' . $product->image) }}" alt=""></a>
                                     </div>
                                     <div class="accessories-content">
-                                        <h5><a href="#">{{ $product->product_name }}</a></h5>
-                                        <span>Price: ${{ number_format($product->price) }}</span>
+                                        <h5><a href="{{ route('site.product', $product->id) }}">{{ $product->product_name }}</a></h5>
+                                        @if($product->discount)
+                                            @php
+                                                $discount = ($product->price * $product->discount) / 100;
+                                                    $price = $product->price - $discount;
+                                            @endphp
+                                            <del class="text-danger">${{ $product->price }}</del>
+                                            <span class="text-primary">${{ $price }}</span>
+                                        @else
+                                            <span class="text-primary">${{ $product->price }}</span>
+                                        @endif
                                         @if($product->inventory)
                                             <span>Available: {{ $product->inventory }}</span>
                                         @endif

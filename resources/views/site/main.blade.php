@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<!-- Mirrored from themepixer.com/demo/html/geco/Geco/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 17 Apr 2021 14:42:03 GMT -->
     @include('site.layout.head')
 <body>
 
@@ -25,5 +24,4 @@
     @include('site.layout.scripts')
 </body>
 
-<!-- Mirrored from themepixer.com/demo/html/geco/Geco/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 17 Apr 2021 14:43:56 GMT -->
 </html>

@@ -215,18 +215,16 @@ class TournamentController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function leaderboard(Request $request)
     {
         $id = $request->get('tournament_id', NULL);
         $data['title'] = 'Leaderboard';
-        $teams = TournamentOrder::where('tournament_id', $id)->get();
-        $ranks = $teams->unique('points')
-            ->values()
-            ->mapWithKeys(function ($item, $index) {
-                return [$item['points'] => $index + 1];
-            });
+        $teams = TournamentOrder::where('tournament_id', $id)->orderBy('points', 'desc')->get();
         $data['teams'] = $teams;
-        $data['ranks'] = $ranks;
         $data['tournaments'] = Tournament::all();
         $data['id'] = $id;
 

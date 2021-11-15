@@ -98,18 +98,6 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="footer-widget mb-50">
-                        <div class="fw-title mb-35">
-                            <h5>Newsletter Sign Up</h5>
-                        </div>
-                        <div class="footer-newsletter">
-                            <form action="{{ route('site.subscribe') }}" method="post">
-                                @csrf
-                                <input name="email" type="text" placeholder="Enter your email">
-                                <button><i class="fas fa-rocket"></i></button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

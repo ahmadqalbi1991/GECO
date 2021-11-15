@@ -21,6 +21,8 @@ use App\Http\Controllers\Auth;
 Route::post('login', [Auth\AuthController::class, 'login'])->name('login');
 Route::get('logout', [Auth\AuthController::class, 'logout'])->name('logout');
 Route::post('register', [Auth\AuthController::class, 'register'])->name('register');
+Route::get('forget-password', [Auth\AuthController::class, 'forgetPassword'])->name('forget-password');
+Route::post('update-password', [Auth\AuthController::class, 'updatePassword'])->name('update-password');
 Route::post('/get-pubg-player', [Site\TournamentController::class, 'getPlayerDetail']);
 
 /*
@@ -54,6 +56,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     Route::get('/leader-board', [Admin\TournamentController::class, 'leaderboard'])->name('leaderboard');
     Route::get('/leader-board/{id}', [Admin\TournamentController::class, 'leaderboard'])->name('leader-board');
+    Route::get('/customers', [Admin\Customers::class, 'index'])->name('customers');
+    Route::get('/delete-customer/{id}', [Admin\Customers::class, 'deleteCustomer'])->name('delete-customer');
 });
 
 /*
@@ -64,6 +68,7 @@ Route::name('site.')->group(function () {
     Route::get('/games', [Admin\AdminController::class, 'login'])->name('games');
     Route::get('/tournaments', [Site\HomeController::class, 'tournaments'])->name('tournaments');
     Route::get('/shop', [Site\HomeController::class, 'shop'])->name('shop');
+    Route::get('/product/{id}', [Site\HomeController::class, 'product'])->name('product');
     Route::get('/about-us', [Site\HomeController::class, 'aboutUs'])->name('about');
     Route::get('/terms-and-conditions', [Site\HomeController::class, 'terms'])->name('terms');
     Route::get('/privacy-policy', [Site\HomeController::class, 'privacy'])->name('privacy');
@@ -102,6 +107,7 @@ Route::name('site.')->group(function () {
     Route::get('/my-orders', [Site\HomeController::class, 'myOrders'])->name('my-orders');
     Route::get('/my-tournaments', [Site\HomeController::class, 'myTournaments'])->name('my-tournaments');
     Route::post('/update-user/{id}', [Site\HomeController::class, 'updateUser'])->name('update-user');
+    Route::get('/leader-board/{id}', [Site\HomeController::class, 'leaderboard'])->name('leaderboard');
 });
 Route::post('/get-pubg-player', [Site\TournamentController::class, 'getPlayerDetail']);
 

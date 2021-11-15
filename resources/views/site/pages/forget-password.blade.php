@@ -12,10 +12,10 @@
                         </div>
                         @enderror
                         <div class="section-title title-style-three mb-20 text-center">
-                            <h2>Login and <span>enjoy tournaments</span></h2>
+                            <h2>Change Password</h2>
                         </div>
                         <div class="contact-form login-form">
-                            <form action="{{ route('login') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('update-password') }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">
@@ -39,11 +39,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="my-2">
-                                    <p>Don't have account? Create new <a href="{{ route('register') }}">Account</a></p>
-                                    <a href="{{ route('forget-password') }}">Forget Password</a>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <input type="password" placeholder="Confirm Password" name="confirm_password"
+                                                   class="form-control @error('confirm_password') is-invalid @enderror">
+                                            @error('confirm_password')
+                                            <span class="error">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-                                <button type="submit">Login</button>
+                                <button type="submit">Change Password</button>
                             </form>
                         </div>
                     </div>

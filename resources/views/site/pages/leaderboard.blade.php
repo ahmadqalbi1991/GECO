@@ -8,40 +8,35 @@
                     <div class="col-12 pl-45">
                         <div class="row">
                             <div class="col-12 mb-5">
+                                <h3 class="text-dark">Leaderboard</h3>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-dark table-striped">
                                         <thead>
                                         <tr>
                                             <th>#</th>
                                             <th></th>
-                                            <th>Tournament</th>
                                             <th>Team Title</th>
-                                            <th>Team Logo</th>
                                             <th>Points</th>
                                             <th>Status</th>
-                                            <th></th>
+                                            <th>Position</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @if(count($tournaments))
+                                        @if(count($teams))
                                             @php $i = 0; @endphp
-                                            @foreach($tournaments as $tournamet)
-                                                @if($tournamet->tournament)
+                                            @foreach($teams as $key => $team)
                                                 <tr>
                                                     <td>{{ ++$i }}</td>
                                                     <td>
-                                                        <img style="width: 100px; height: 100px;" src="{{ asset('games/tournaments/' . $tournamet->tournament->image) }}" alt="">
+                                                        <img style="width: 100px; height: 100px;"
+                                                             src="{{ asset('teams/' . $team->tournament->tournament_title . '/' . $team->team_logo) }}"
+                                                             alt="">
                                                     </td>
-                                                    <td>{{ $tournamet->tournament->tournament_title }}</td>
-                                                    <td>{{ $tournamet->team_title }}</td>
-                                                    <td>
-                                                        <img style="width: 100px; height: 100px;" src="{{ asset('teams/' . $tournamet->tournament->tournament_title . '/' . $tournamet->team_logo) }}" alt="">
-                                                    </td>
-                                                    <td>{{ $tournamet->points }}</td>
-                                                    <td>{{ str_replace('_', ' ', strtoupper($tournamet->team_status)) }}</td>
-                                                    <td><a href="{{ route('site.leaderboard', $tournamet->tournament_id) }}" class="text-light">Leader Board</a></td>
+                                                    <td>{{ $team->team_title }}</td>
+                                                    <td>{{ $team->points }}</td>
+                                                    <td>{{ str_replace('_', ' ', strtoupper($team->team_status)) }}</td>
+                                                    <td>{{ $key + 1 }}</td>
                                                 </tr>
-                                                @endif
                                             @endforeach
                                         @else
                                             <tr>
